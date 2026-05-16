@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biology Lesson Plans — Inter College Kharmang</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --surface2: #1c2330;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --accent2: #3fb950;
+    --accent3: #f78166;
+    --accent4: #d2a8ff;
+    --accent5: #ffa657;
+    --text: #e6edf3;
+    --text2: #8b949e;
+    --text3: #6e7681;
+    --heading-font: 'Playfair Display', Georgia, serif;
+    --body-font: 'DM Sans', sans-serif;
+    --mono-font: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--body-font);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #1a2332 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(88,166,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .site-header .badge {
+    display: inline-block;
+    font-family: var(--mono-font);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(88,166,255,0.3);
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    background: rgba(88,166,255,0.06);
+  }
+  .site-header h1 {
+    font-family: var(--heading-font);
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+  .site-header h1 span { color: var(--accent); }
+  .site-header .sub {
+    font-size: 15px;
+    color: var(--text2);
+    font-weight: 400;
+  }
+  .site-header .meta-row {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text2);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+  .meta-chip .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    flex-shrink: 0;
+  }
+
+  /* ── LAYOUT ── */
+  .app-body {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 0 24px 0;
+    padding-right: 16px;
+    border-right: 1px solid var(--border);
+  }
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .sidebar-search {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .sidebar-search input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: var(--body-font);
+    font-size: 13px;
+    padding: 9px 12px 9px 34px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .sidebar-search input:focus { border-color: var(--accent); }
+  .sidebar-search input::placeholder { color: var(--text3); }
+  .sidebar-search .icon {
+    position: absolute;
+    left: 10px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    font-size: 14px;
+  }
+
+  .year-group { margin-bottom: 8px; }
+  .year-label {
+    font-family: var(--mono-font);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 4px 8px;
+    margin-bottom: 4px;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-size: 13px;
+    color: var(--text2);
+    border: 1px solid transparent;
+    margin-bottom: 2px;
+    line-height: 1.3;
+  }
+  .nav-item:hover { background: var(--surface2); color: var(--text); }
+  .nav-item.active {
+    background: rgba(88,166,255,0.1);
+    color: var(--accent);
+    border-color: rgba(88,166,255,0.2);
+  }
+  .nav-num {
+    font-family: var(--mono-font);
+    font-size: 10px;
+    color: var(--text3);
+    min-width: 22px;
+    flex-shrink: 0;
+  }
+  .nav-item.active .nav-num { color: var(--accent); }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    flex: 1;
+    padding: 32px 0 64px 32px;
+    min-width: 0;
+  }
+
+  /* ── LESSON PLAN CARD ── */
+  .lesson-plan {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .lesson-plan.visible { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .lp-header {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent4));
+  }
+  .lp-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .lp-meta-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+  }
+  .lp-meta-item .lbl {
+    font-family: var(--mono-font);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 3px;
+  }
+  .lp-meta-item .val {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .lp-title {
+    font-family: var(--heading-font);
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .lp-title span { color: var(--accent); }
+  .lp-model-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-family: var(--mono-font);
+    color: var(--accent2);
+    background: rgba(63,185,80,0.08);
+    border: 1px solid rgba(63,185,80,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-top: 8px;
+  }
+
+  /* ── SECTIONS ── */
+  .section-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .section-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .section-card:hover { border-color: #404850; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+  .section-header .s-title {
+    font-family: var(--heading-font);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .section-header .s-duration {
+    font-family: var(--mono-font);
+    font-size: 11px;
+    color: var(--text3);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .section-body {
+    padding: 20px;
+  }
+  .section-body p {
+    color: var(--text2);
+    font-size: 14px;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .section-body p:last-child { margin-bottom: 0; }
+  .section-body ul, .section-body ol {
+    padding-left: 0;
+    list-style: none;
+  }
+  .section-body li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .section-body li::before {
+    content: '▸';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+    font-size: 11px;
+  }
+  .section-body li.obj::before { content: '✓'; color: var(--accent2); }
+  .section-body li.q::before { content: '?'; color: var(--accent5); font-weight: 700; font-size: 12px; }
+  .hw-box {
+    background: var(--surface2);
+    border: 1px solid rgba(255,166,87,0.2);
+    border-left: 3px solid var(--accent5);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+  .hw-box strong { color: var(--accent5); }
+
+  /* Section color themes */
+  .s1 .section-icon { background: rgba(88,166,255,0.1); }
+  .s2 .section-icon { background: rgba(63,185,80,0.1); }
+  .s3 .section-icon { background: rgba(210,168,255,0.1); }
+  .s4 .section-icon { background: rgba(88,166,255,0.1); }
+  .s5 .section-icon { background: rgba(63,185,80,0.1); }
+  .s6 .section-icon { background: rgba(247,129,102,0.1); }
+  .s7 .section-icon { background: rgba(255,166,87,0.1); }
+
+  /* ── OBJECTIVES TABLE ── */
+  .obj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  .obj-card {
+    background: var(--surface2);
+    border: 1px solid rgba(63,185,80,0.15);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--text2);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .obj-card .check { color: var(--accent2); font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+
+  /* ── PRINT BUTTON ── */
+  .action-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-family: var(--body-font);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d1117;
+    border-color: var(--accent);
+  }
+  .btn-primary:hover { background: #79beff; }
+  .btn-outline {
+    background: transparent;
+    color: var(--text2);
+    border-color: var(--border);
+  }
+  .btn-outline:hover { background: var(--surface2); color: var(--text); }
+
+  /* ── HOME / OVERVIEW ── */
+  .home-view {
+    display: block;
+  }
+  .home-intro {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .home-intro::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 100% 0%, rgba(210,168,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .home-intro h2 {
+    font-family: var(--heading-font);
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+  .home-intro p { color: var(--text2); font-size: 15px; line-height: 1.7; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-card .num {
+    font-family: var(--heading-font);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-card .lbl { font-size: 13px; color: var(--text2); }
+
+  .topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .topic-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topic-card:hover {
+    border-color: var(--accent);
+    background: rgba(88,166,255,0.04);
+    transform: translateY(-1px);
+  }
+  .topic-card .tc-num {
+    font-family: var(--mono-font);
+    font-size: 12px;
+    color: var(--text3);
+    min-width: 28px;
+  }
+  .topic-card .tc-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text2);
+    line-height: 1.4;
+    flex: 1;
+  }
+  .topic-card:hover .tc-name { color: var(--text); }
+  .topic-card .tc-arr { color: var(--text3); font-size: 12px; }
+  .topic-card:hover .tc-arr { color: var(--accent); }
+  .year-section-title {
+    font-family: var(--heading-font);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 28px 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .year-section-title .pill {
+    font-family: var(--mono-font);
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--accent);
+    background: rgba(88,166,255,0.1);
+    border: 1px solid rgba(88,166,255,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  /* ── RESPONSIVE ── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 16px; left: 16px;
+    z-index: 200;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .app-body { padding: 0; }
+    .sidebar {
+      position: fixed;
+      left: -300px;
+      top: 0; bottom: 0;
+      width: 280px;
+      background: var(--bg);
+      z-index: 100;
+      transition: left 0.3s ease;
+      padding: 24px 16px;
+      border-right: 1px solid var(--border);
+      height: 100vh;
+    }
+    .sidebar.open { left: 0; }
+    .overlay.open { display: block; }
+    .main { padding: 16px; padding-top: 60px; }
+  }
+
+  @media print {
+    .sidebar, .hamburger, .action-bar, .site-header .meta-row { display: none !important; }
+    .main { padding: 0; }
+    .lesson-plan { display: block !important; }
+    .home-view { display: none !important; }
+    body { background: white; color: black; }
+    .section-card, .lp-header { border-color: #ddd; background: white; }
+    .lp-title, .s-title { color: black; }
+    .section-body p, .section-body li { color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()" id="hamBtn">☰</button>
+<div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="badge">BOPPPS Model · Biology</div>
+  <h1>Biology <span>Lesson Plans</span></h1>
+  <p class="sub">Inter College Kharmang &nbsp;·&nbsp; Sir Hasnian &nbsp;·&nbsp; 40 Minutes per lesson</p>
+  <div class="meta-row">
+    <div class="meta-chip"><span class="dot"></span>First Year Biology — 24 Topics</div>
+    <div class="meta-chip"><span class="dot" style="background:var(--accent4)"></span>Second Year Biology — 25 Topics</div>
+    <div class="meta-chip"><span class="dot" style="background:var(--accent5)"></span>BOPPPS Teaching Model</div>
+  </div>
+</header>
+
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-search">
+      <span class="icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search topics…" oninput="filterTopics(this.value)">
+    </div>
+
+    <div class="year-group">
+      <div class="year-label">Overview</div>
+      <div class="nav-item active" data-id="home" onclick="showView('home', this)">
+        <span class="nav-num">—</span>All Topics
+      </div>
+    </div>
+
+    <div class="year-group" id="nav-y1">
+      <div class="year-label">First Year</div>
+      <!-- generated by JS -->
+    </div>
+
+    <div class="year-group" id="nav-y2">
+      <div class="year-label">Second Year</div>
+      <!-- generated by JS -->
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main" id="mainArea">
+
+    <!-- HOME VIEW -->
+    <div class="home-view" id="view-home">
+      <div class="home-intro">
+        <h2>Biology Lesson Plan Library</h2>
+        <p>A complete collection of 49 structured lesson plans following the BOPPPS model — Bridge-in, Learning Objectives, Pre-Assessment, Participatory Learning, Post-Assessment, and Summary — for First Year and Second Year Biology students at Inter College Kharmang.</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="num">49</div><div class="lbl">Total Lessons</div></div>
+        <div class="stat-card"><div class="num">24</div><div class="lbl">First Year Topics</div></div>
+        <div class="stat-card"><div class="num">25</div><div class="lbl">Second Year Topics</div></div>
+        <div class="stat-card"><div class="num">40</div><div class="lbl">Minutes / Lesson</div></div>
+        <div class="stat-card"><div class="num">6</div><div class="lbl">BOPPPS Stages</div></div>
+      </div>
+      <div class="year-section-title">First Year Biology <span class="pill">24 Topics</span></div>
+      <div class="topic-grid" id="home-grid-y1"></div>
+      <div class="year-section-title">Second Year Biology <span class="pill">25 Topics</span></div>
+      <div class="topic-grid" id="home-grid-y2"></div>
+    </div>
+
+    <!-- Lesson plans are injected here -->
+    <div id="lesson-container"></div>
+
+  </main>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+//  DATA  — All 49 lesson plans
+// ═══════════════════════════════════════════════
+const plans = [
+  // ── FIRST YEAR ──────────────────────────────
+  {id:'y1t1', year:'First Year', num:'1', topic:'Cell',
+   bridge:'The teacher begins by asking students: "What would happen if our body had no cells?" and "What are living things made of?" Simple pictures of plant and animal cells are displayed to spark curiosity and relate the topic to daily life.',
+   objectives:['Define a cell and explain its significance','Explain the importance of cells as the basic unit of life','Identify the main parts of a cell (cell membrane, nucleus, cytoplasm)','Differentiate between plant cells and animal cells'],
+   pre:['What is the basic unit of life?','Have you ever heard the term "cell" before?','Can you name any part of a cell?'],
+   learning:'The teacher explains that a cell is the structural and functional unit of life. Using labeled diagrams, the teacher describes the cell membrane (controls entry/exit), nucleus (control center containing DNA), cytoplasm (gel-like fluid holding organelles), mitochondria (energy production), and chloroplasts (found only in plants). Students compare plant and animal cells through group discussion, focusing on differences such as cell wall, chloroplasts, and vacuole size. Each group presents one key difference to the class.',
+   post:['What is a cell?','Name three parts of a cell.','State one difference between plant and animal cells.'],
+   summary:'The cell is the basic structural and functional unit of all living organisms. Different parts of the cell perform specific functions essential for life.',
+   hw:'Draw a neat, labeled diagram of both a plant cell and an animal cell. List three differences between them in a table.'},
+
+  {id:'y1t2', year:'First Year', num:'2', topic:'Polysaccharides',
+   bridge:'The teacher asks: "What gives bread its chewy texture?" and "Why do potatoes feel so filling?" Students are shown images of starch granules and cellulose fibers to link food chemistry with biology.',
+   objectives:['Define polysaccharides and their general formula','Identify common polysaccharides (starch, glycogen, cellulose)','Explain the role of glycosidic bonds in polysaccharide formation','Describe the biological functions of each major polysaccharide'],
+   pre:['What is a carbohydrate?','Is sugar a large or small molecule?','Can you name any food that contains starch?'],
+   learning:'The teacher explains that polysaccharides are large carbohydrates formed by many monosaccharide units joined by glycosidic bonds through condensation reactions. Starch (amylose + amylopectin) stores energy in plants. Glycogen is the animal equivalent, stored in the liver and muscles. Cellulose provides structural support in plant cell walls due to its β-1,4 glycosidic bonds that form rigid microfibrils. Students do a diagram activity identifying bonds in starch vs. cellulose chains.',
+   post:['Define a polysaccharide.','Name two differences between starch and cellulose.','Where is glycogen stored in the human body?'],
+   summary:'Polysaccharides are polymers of monosaccharides. Starch and glycogen store energy; cellulose provides structural rigidity in plants.',
+   hw:'Create a comparison table of starch, glycogen, and cellulose showing: monomer, linkage type, location, and function.'},
+
+  {id:'y1t3', year:'First Year', num:'3', topic:'Fatty Acids',
+   bridge:'The teacher asks: "Why do oils float on water?" and shows butter and olive oil as examples. A diagram comparing saturated and unsaturated fat molecules is displayed to generate discussion.',
+   objectives:['Define a fatty acid and identify its structural components','Distinguish between saturated and unsaturated fatty acids','Explain cis and trans configurations in unsaturated fatty acids','Describe the role of fatty acids in forming triglycerides and phospholipids'],
+   pre:['What is a lipid?','Is butter solid or liquid at room temperature — why?','What does "saturated fat" mean on a food label?'],
+   learning:'A fatty acid consists of a carboxyl group (–COOH) attached to a hydrocarbon chain. Saturated fatty acids have no double bonds (e.g., stearic acid in beef fat) and are solid at room temperature. Unsaturated fatty acids have one or more C=C double bonds; monounsaturated (e.g., oleic acid in olive oil) or polyunsaturated (e.g., linolenic acid in fish oil). Cis configurations produce bent chains (liquid oils); trans configurations create straighter chains (partially hydrogenated fats). Students model fatty acids using string and beads.',
+   post:['What makes a fatty acid "saturated"?','Draw the general structure of a fatty acid.','Why are trans fats considered unhealthy?'],
+   summary:'Fatty acids are carboxylic acids with hydrocarbon tails. Their degree of saturation determines physical properties and health implications.',
+   hw:'Draw and label a saturated and an unsaturated fatty acid. Write two differences between them.'},
+
+  {id:'y1t4', year:'First Year', num:'4', topic:'Factors Affecting the Function of Enzymes',
+   bridge:'The teacher asks: "Why does milk spoil faster in summer than in winter?" and "Why does your body temperature matter during illness?" A simple enzyme-substrate animation is shown.',
+   objectives:['Define enzymes and explain their role as biological catalysts','Describe how temperature affects enzyme activity','Explain the effect of pH on enzyme structure and function','Describe the impact of enzyme and substrate concentration on reaction rate'],
+   pre:['What is a catalyst?','Have you heard of enzymes before?','Does temperature affect chemical reactions?'],
+   learning:'Enzymes are biological catalysts (usually proteins) that speed up metabolic reactions by lowering activation energy. Temperature: Activity increases up to an optimum (~37°C in humans); beyond this, high temperature denatures the enzyme by breaking hydrogen bonds, altering the active site shape. pH: Each enzyme has an optimum pH (pepsin works at pH 2; amylase at pH 7); extreme pH values cause denaturation. Substrate concentration: As substrate increases, rate increases until all active sites are saturated (Vmax). Students plot enzyme activity graphs and interpret results.',
+   post:['What happens to an enzyme at very high temperature?','What is meant by the "optimum pH" of an enzyme?','How does increasing substrate concentration affect enzyme activity?'],
+   summary:'Enzyme activity is influenced by temperature, pH, and substrate concentration. Denaturation permanently disrupts enzyme function.',
+   hw:'Draw a graph showing enzyme activity vs. temperature and one showing enzyme activity vs. pH. Label key features on each graph.'},
+
+  {id:'y1t5', year:'First Year', num:'5', topic:'Lock and Key Model',
+   bridge:'The teacher holds up a key and lock, asking: "Why does only one key fit a specific lock?" This metaphor is extended to enzymes and their substrates, generating curiosity about molecular specificity.',
+   objectives:['Explain the lock and key model of enzyme action','Define active site and substrate','Describe the formation of an enzyme-substrate complex','Compare lock and key model with the induced fit model'],
+   pre:['What is an enzyme?','Do all enzymes work on every substrate?','What is meant by "specificity"?'],
+   learning:'The lock and key model (Emil Fischer, 1894) proposes that the enzyme\'s active site has a rigid, specific shape that perfectly complements its substrate, like a lock fits a key. The substrate (key) binds to the active site (lock) to form an enzyme-substrate complex, which then produces products, releasing the unchanged enzyme. This explains enzyme specificity. However, the induced fit model (Koshland, 1958) is a refinement: the active site is flexible and changes shape slightly upon substrate binding. Students match substrate cards to enzyme active site templates in a class activity.',
+   post:['What does the "lock" represent in the lock and key model?','What is an enzyme-substrate complex?','How does the induced fit model differ from lock and key?'],
+   summary:'The lock and key model explains enzyme specificity: each enzyme has an active site that fits only a specific substrate, forming an enzyme-substrate complex.',
+   hw:'Draw a step-by-step diagram illustrating the lock and key model of enzyme action. Label all parts.'},
+
+  {id:'y1t6', year:'First Year', num:'6', topic:'Photophosphorylation',
+   bridge:'The teacher asks: "How do plants make food from sunlight?" and shines a torch on a green leaf, asking students what energy is being converted. A diagram of a chloroplast is shown briefly.',
+   objectives:['Define photophosphorylation','Distinguish between cyclic and non-cyclic photophosphorylation','Explain the role of light energy in ATP synthesis','Describe the role of electron carriers in the light reactions'],
+   pre:['What is photosynthesis?','Where does photosynthesis take place in a cell?','What is ATP?'],
+   learning:'Photophosphorylation is the synthesis of ATP using light energy during the light-dependent reactions of photosynthesis in the thylakoid membranes. Non-cyclic photophosphorylation: Photosystem II absorbs light → excited electrons pass through an electron transport chain → ATP and NADPH are produced → electrons replaced by splitting water (photolysis), releasing O₂. Photosystem I regenerates NADPH. Cyclic photophosphorylation: Only Photosystem I; electrons cycle back, producing only ATP (no NADPH, no O₂). Students label electron flow diagrams.',
+   post:['What is photophosphorylation?','What is produced during non-cyclic photophosphorylation?','Where in the chloroplast does photophosphorylation occur?'],
+   summary:'Photophosphorylation converts light energy to chemical energy (ATP). Non-cyclic produces ATP, NADPH, and O₂; cyclic produces only ATP.',
+   hw:'Draw and annotate a diagram showing non-cyclic photophosphorylation, including both photosystems and the electron transport chain.'},
+
+  {id:'y1t7', year:'First Year', num:'7', topic:'Glycolysis',
+   bridge:'The teacher asks: "How do your muscles get energy when you sprint?" and "What happens to the glucose you eat?" A flowchart of cellular respiration is shown, with glycolysis highlighted.',
+   objectives:['Define glycolysis and state where it occurs','Describe the key steps and products of glycolysis','Explain the energy investment and energy payoff phases','Identify the net gain of ATP and NADH from glycolysis'],
+   pre:['What is cellular respiration?','Where does energy come from in the body?','What is glucose?'],
+   learning:'Glycolysis ("sugar splitting") is the first stage of cellular respiration occurring in the cytoplasm of all cells. It does not require oxygen. One glucose (6C) is converted into two pyruvate (3C) molecules. Energy investment phase: 2 ATP used to phosphorylate glucose. Energy payoff phase: 4 ATP produced + 2 NADH. Net gain: 2 ATP + 2 NADH + 2 pyruvate. Students trace each carbon through the pathway on a simplified diagram and calculate net energy yield.',
+   post:['Where does glycolysis take place?','What is the starting molecule and end product of glycolysis?','What is the net ATP gain from glycolysis?'],
+   summary:'Glycolysis splits glucose into two pyruvate molecules in the cytoplasm, yielding a net gain of 2 ATP and 2 NADH without requiring oxygen.',
+   hw:'Draw a simplified flow diagram of glycolysis showing the input, key intermediate steps, and all outputs including ATP and NADH.'},
+
+  {id:'y1t8', year:'First Year', num:'8', topic:'Krebs Cycle',
+   bridge:'The teacher asks: "Where does all the CO₂ you breathe out come from?" and draws a simple cycle on the board. Students are shown how it connects to glycolysis via pyruvate.',
+   objectives:['Describe where and how the Krebs cycle takes place','List the products generated per turn of the Krebs cycle','Explain the role of acetyl-CoA in starting the cycle','Summarize the total outputs from two turns of the Krebs cycle'],
+   pre:['What is pyruvate and where does it come from?','What gas is exhaled during cellular respiration?','Have you heard of the mitochondria?'],
+   learning:'The Krebs cycle (citric acid cycle) takes place in the mitochondrial matrix. Pyruvate is first converted to acetyl-CoA (2C) by pyruvate decarboxylation, releasing CO₂ and NADH. Acetyl-CoA enters the cycle by combining with oxaloacetate (4C) to form citrate (6C). Per turn: 3 NADH, 1 FADH₂, 1 ATP (or GTP), and 2 CO₂ are released. Since one glucose yields two pyruvates, the cycle turns twice. Total from two turns: 6 NADH, 2 FADH₂, 2 ATP, 4 CO₂. Students complete a partial cycle diagram.',
+   post:['Where does the Krebs cycle occur?','What molecule enters the Krebs cycle?','Name three products of one turn of the Krebs cycle.'],
+   summary:'The Krebs cycle occurs in the mitochondrial matrix, breaking down acetyl-CoA and producing NADH, FADH₂, ATP, and CO₂.',
+   hw:'Complete and label a full Krebs cycle diagram showing all inputs and outputs. Calculate total yield from one glucose molecule.'},
+
+  {id:'y1t9', year:'First Year', num:'9', topic:'Life Cycle of Bacteriophage',
+   bridge:'The teacher asks: "Can viruses attack bacteria?" and shows an electron micrograph of a bacteriophage attached to a bacterium. Students discuss what might happen next.',
+   objectives:['Define a bacteriophage and describe its structure','Explain the lytic cycle step by step','Explain the lysogenic cycle and how it differs from lytic','Describe the significance of bacteriophages in science and medicine'],
+   pre:['What is a virus?','Do viruses have cells?','Can viruses infect bacteria?'],
+   learning:'A bacteriophage is a virus that infects bacteria. It has a head (containing DNA), tail fibers, and a base plate. Lytic cycle: Attachment → Injection of DNA → Biosynthesis (host makes viral components) → Assembly → Lysis (host cell bursts, releasing ~100–200 new phages). Lysogenic cycle: Viral DNA integrates into host chromosome as a prophage → replicated with host DNA during cell division → may be induced to enter lytic cycle under stress. Students draw both cycles side by side and compare.',
+   post:['What is a bacteriophage?','List the steps of the lytic cycle in order.','What is a prophage?'],
+   summary:'Bacteriophages infect bacteria using either the lytic cycle (immediate destruction) or lysogenic cycle (dormant integration). Both ultimately reproduce viral progeny.',
+   hw:'Draw and label both the lytic and lysogenic cycles of a bacteriophage, indicating where the cycles diverge and converge.'},
+
+  {id:'y1t10', year:'First Year', num:'10', topic:'Life Cycle of HIV',
+   bridge:'The teacher asks: "Why is HIV so difficult to treat?" and shows a news article headline about AIDS. Students discuss what they know about the immune system.',
+   objectives:['Describe the structure of the HIV virus','Explain the stages of HIV replication in a host cell','Describe how HIV destroys the immune system','Distinguish between HIV infection and AIDS'],
+   pre:['What is a retrovirus?','Have you heard about AIDS?','What do white blood cells do?'],
+   learning:'HIV (Human Immunodeficiency Virus) is a retrovirus with two RNA strands, reverse transcriptase, and a lipid envelope with glycoprotein spikes (gp120). Life cycle: (1) Attachment to CD4+ T-helper cells via gp120. (2) Fusion and entry. (3) Reverse transcription: RNA → DNA using reverse transcriptase. (4) Integration: viral DNA inserted into host genome as provirus. (5) Transcription and translation: viral proteins produced. (6) Assembly and budding. (7) Maturation. As CD4+ cells are destroyed, the immune system collapses → AIDS (CD4 count <200 cells/μL). Students arrange step cards in correct order.',
+   post:['What type of nucleic acid does HIV contain?','What enzyme allows HIV to convert RNA into DNA?','What is the difference between HIV and AIDS?'],
+   summary:'HIV is a retrovirus that infects CD4+ T cells, using reverse transcriptase to integrate into the host genome. Destruction of immune cells leads to AIDS.',
+   hw:'Draw a labeled diagram of the HIV life cycle showing all major steps from attachment to budding. Write two ways HIV is transmitted and two ways it is prevented.'},
+
+  {id:'y1t11', year:'First Year', num:'11', topic:'Viral Diseases',
+   bridge:'The teacher asks: "Have you ever had the flu or chicken pox?" Students share experiences. The teacher shows a world map of major viral disease outbreaks to highlight global importance.',
+   objectives:['Define a viral disease and explain how viruses cause illness','Identify major viral diseases and their causative viruses','Describe symptoms, transmission, and prevention of key viral diseases','Explain the role of vaccines in preventing viral infections'],
+   pre:['What is a virus?','Can viruses be treated with antibiotics?','Name any disease caused by a virus.'],
+   learning:'Viral diseases are caused by viruses that hijack host cells. Key diseases: Influenza (Orthomyxovirus) — respiratory illness, transmitted by droplets, prevented by annual flu vaccine. COVID-19 (SARS-CoV-2) — severe respiratory disease, spreads by aerosols, mRNA vaccines developed. HIV/AIDS (Retrovirus) — immune deficiency, spread by blood/fluids, managed with antiretrovirals. Measles (Paramyxovirus) — highly contagious rash-causing disease, MMR vaccine is protective. Dengue (Flavivirus) — vector-borne (Aedes mosquito), no specific antiviral. Students create a disease fact-card for one assigned virus.',
+   post:['Name two viral diseases and their causative viruses.','How does influenza spread?','Why are antibiotics ineffective against viruses?'],
+   summary:'Viral diseases are caused by specific viruses infecting host cells. Prevention relies on vaccines, hygiene, and vector control since antivirals are limited.',
+   hw:'Prepare a chart comparing five viral diseases showing: causative virus, mode of transmission, symptoms, and prevention method.'},
+
+  {id:'y1t12', year:'First Year', num:'12', topic:'Structure of Bacteria',
+   bridge:'The teacher asks: "Are all bacteria harmful?" and shows images of yogurt, antibiotic pills, and a sick patient. Students discuss how bacteria affect daily life.',
+   objectives:['Describe the general structure of a bacterial cell','Identify and state the function of key bacterial structures','Distinguish between gram-positive and gram-negative bacteria','Explain how bacterial structure relates to antibiotic resistance'],
+   pre:['Are bacteria eukaryotes or prokaryotes?','Do bacteria have a nucleus?','Can you name any part of a bacterium?'],
+   learning:'Bacteria are prokaryotic organisms with these structures: Cell wall (peptidoglycan — target of penicillin), Cell membrane (phospholipid bilayer), Cytoplasm, Circular DNA (nucleoid region — no nucleus), Ribosomes (70S — differ from eukaryotic 80S), Plasmids (extra circular DNA), Flagella (movement), Pili (attachment), Capsule (protection and virulence). Gram-positive bacteria have a thick peptidoglycan wall (purple stain). Gram-negative bacteria have a thin wall plus an outer membrane (pink stain). Students label a bacterial cell diagram.',
+   post:['What type of genetic material do bacteria have?','What is the function of flagella in bacteria?','How do gram-positive and gram-negative bacteria differ?'],
+   summary:'Bacteria are prokaryotes with a cell wall, circular DNA, 70S ribosomes, and no membrane-bound nucleus. Their structure determines antibiotic sensitivity.',
+   hw:'Draw and label a detailed diagram of a typical bacterial cell. Write two functions for each labeled structure.'},
+
+  {id:'y1t13', year:'First Year', num:'13', topic:'Mode of Nutrition in Bacteria',
+   bridge:'The teacher asks: "How do bacteria feed if they have no mouth?" Students hypothesize. Images of bacteria in soil, hot springs, and human intestines are shown to illustrate diverse environments.',
+   objectives:['Define autotrophic and heterotrophic nutrition in bacteria','Explain photosynthetic and chemosynthetic autotrophy','Describe saprophytic, parasitic, and mutualistic heterotrophy','Give examples of bacteria for each nutritional mode'],
+   pre:['What is nutrition?','Do all organisms eat the same way?','Can bacteria make their own food?'],
+   learning:'Autotrophic bacteria make their own food: Photosynthetic (e.g., Cyanobacteria — use light and CO₂ like plants, but have bacteriochlorophyll). Chemosynthetic (e.g., Nitrosomonas — oxidize inorganic chemicals such as ammonia for energy). Heterotrophic bacteria obtain food from organic matter: Saprophytes (e.g., Bacillus subtilis — decompose dead matter, critical for nutrient cycling). Parasites (e.g., Mycobacterium tuberculosis — cause disease in host). Mutualists (e.g., Rhizobium — fix nitrogen in legume roots, benefiting both). Students sort bacterial species into nutritional categories.',
+   post:['What is the difference between autotrophic and heterotrophic bacteria?','Give one example of a chemosynthetic bacterium.','How does a saprophyte obtain nutrition?'],
+   summary:'Bacteria are nutritionally diverse — autotrophs use light or chemicals to make food, while heterotrophs obtain nutrients from organic or living matter.',
+   hw:'Create a concept map showing the different modes of nutrition in bacteria with at least one example and ecological role for each type.'},
+
+  {id:'y1t14', year:'First Year', num:'14', topic:'Ecological Importance of Bacteria',
+   bridge:'The teacher asks: "What would happen if bacteria disappeared from Earth?" Students predict. A diagram of the nitrogen cycle is briefly shown to spark interest in bacteria\'s invisible but vital roles.',
+   objectives:['Explain the role of bacteria in decomposition and nutrient cycling','Describe nitrogen fixation and its ecological significance','Discuss the role of bacteria in food production and biotechnology','Assess both harmful and beneficial ecological roles of bacteria'],
+   pre:['What are decomposers?','Have you heard of the nitrogen cycle?','Do bacteria play any useful role in nature?'],
+   learning:'Bacteria are ecologically indispensable: Decomposition — Saprophytic bacteria break down dead organic matter, releasing minerals back into soil (e.g., Pseudomonas). Nitrogen Fixation — Rhizobium in legume root nodules converts atmospheric N₂ to ammonia, fertilizing soil. Nitrification — Nitrosomonas converts NH₃ → NO₂⁻; Nitrobacter converts NO₂⁻ → NO₃⁻ for plant uptake. Denitrification — Bacteria return nitrogen to the atmosphere. Food industry — Lactobacillus makes yogurt; Acetobacter makes vinegar. Biotechnology — Bacteria produce insulin, antibiotics, and are used in bioremediation. Students build a nitrogen cycle diagram using provided bacterial names.',
+   post:['What is nitrogen fixation?','Name a bacterium involved in decomposition.','Give two ways bacteria are useful in industry.'],
+   summary:'Bacteria are vital to ecosystems through decomposition, nutrient cycling, and nitrogen fixation, and are also harnessed in food production and biotechnology.',
+   hw:'Draw a labeled nitrogen cycle diagram, marking where different types of bacteria play their roles. List three industrial uses of bacteria.'},
+
+  {id:'y1t15', year:'First Year', num:'15', topic:'Reproduction in Bacteria',
+   bridge:'The teacher asks: "Why does a bacterial infection spread so rapidly?" Students calculate: if one bacterium divides every 20 minutes, how many will there be in 3 hours? This simple math astonishes them.',
+   objectives:['Describe binary fission as the main form of bacterial reproduction','Explain the process of bacterial conjugation','Define transformation and transduction in bacteria','Explain the formation of endospores under unfavorable conditions'],
+   pre:['Do bacteria reproduce sexually or asexually?','What does "binary" mean?','What is a generation time?'],
+   learning:'Asexual reproduction — Binary fission: the bacterial chromosome replicates → cell elongates → septum forms → two identical daughter cells produced. Under ideal conditions, E. coli divides every 20 minutes. Genetic recombination (not true sexual reproduction): Conjugation — direct cell-to-cell contact via pilus, F-plasmid transferred. Transformation — uptake of naked DNA fragments from the environment. Transduction — bacteriophage transfers bacterial DNA between cells. Endospore formation: under stress (heat, drought), bacteria (e.g., Bacillus, Clostridium) form dormant, heat-resistant endospores that can survive centuries.',
+   post:['What is binary fission?','How does conjugation differ from binary fission?','What is an endospore and why is it significant?'],
+   summary:'Bacteria primarily reproduce asexually by binary fission. Genetic variation occurs through conjugation, transformation, and transduction. Endospores ensure survival under harsh conditions.',
+   hw:'Draw and explain the steps of binary fission. Write a short paragraph comparing binary fission with conjugation.'},
+
+  {id:'y1t16', year:'First Year', num:'16', topic:'Lichens',
+   bridge:'The teacher shows images of lichens on gravestones, Arctic tundra, and tropical trees, asking: "What living thing could survive in all these places?" Students express surprise and curiosity.',
+   objectives:['Define a lichen and identify its component organisms','Explain the symbiotic relationship between fungus and alga/cyanobacterium','Describe the structure of a lichen thallus','List ecological and economic uses of lichens'],
+   pre:['What is symbiosis?','Have you seen crusty patches on rocks or tree bark?','What does "mutualism" mean?'],
+   learning:'A lichen is a composite organism formed by a mutualistic symbiosis between a fungus (mycobiont — usually Ascomycota) and a photosynthetic partner (photobiont — green algae or cyanobacteria). The fungus provides: water, minerals, shelter, and anchoring. The alga/cyanobacterium provides: carbohydrates via photosynthesis; cyanobacteria also fix nitrogen. Structure: Thallus types — crustose (flat, on rocks), foliose (leaf-like), fruticose (shrubby). Internally: upper cortex → algal layer → medulla → lower cortex. Lichens are pioneer organisms in primary succession, produce lichen acids, are used as pH indicators (e.g., litmus from Rocella) and are sensitive air quality bioindicators.',
+   post:['What two organisms make up a lichen?','What does each partner provide in the symbiosis?','Why are lichens considered pioneer organisms?'],
+   summary:'Lichens are mutualistic associations of fungi and photobionts. They colonize barren habitats and serve as ecological pioneers, pollution indicators, and cultural resources.',
+   hw:'Draw the internal structure of a foliose lichen and label all layers. List three ecological and two economic roles of lichens.'},
+
+  {id:'y1t17', year:'First Year', num:'17', topic:'Plant-like Protists (Algae)',
+   bridge:'The teacher holds up a bottle of spirulina supplement and asks: "Why are these tiny organisms called superfoods?" Images of algal blooms, seaweed, and microscopic diatoms are shown.',
+   objectives:['Define algae and distinguish them from true plants','Classify algae by pigmentation: green, red, brown, diatoms','Describe key structural and reproductive features of algae','Explain the ecological and economic importance of algae'],
+   pre:['What is a protist?','What makes algae different from plants?','Have you seen green water in a pond?'],
+   learning:'Algae are eukaryotic, photosynthetic protists found in aquatic and moist terrestrial habitats. They lack true roots, stems, and leaves. Classification by pigment: Chlorophyta (green algae, e.g., Chlamydomonas, Spirogyra) — chlorophyll a and b. Phaeophyta (brown algae, e.g., Laminaria, Sargassum) — fucoxanthin. Rhodophyta (red algae, e.g., Polysiphonia) — phycoerythrin. Bacillariophyta (diatoms) — silica cell walls (frustules). Reproduction: asexual (fragmentation, zoospores) and sexual (conjugation, oogamy). Ecological role: produce ~50% of Earth\'s oxygen; base of aquatic food chains. Economic uses: agar (Gelidium), carrageenan, alginates, biofuel, food (nori, spirulina). Students examine prepared slides of Spirogyra and Chlamydomonas.',
+   post:['What pigment gives brown algae their color?','Name two products derived from algae.','How do algae contribute to atmospheric oxygen?'],
+   summary:'Algae are diverse photosynthetic protists classified by pigment. They are vital oxygen producers, food chain foundations, and sources of many commercial products.',
+   hw:'Create a classification table for four algal groups (green, red, brown, diatoms) showing: pigment, example species, habitat, and one economic use.'},
+
+  {id:'y1t18', year:'First Year', num:'18', topic:'Life Cycle of Pine',
+   bridge:'The teacher shows pine cones (male and female) and asks: "How does a pine tree reproduce without flowers?" Students handle the cones and observe seeds on scales.',
+   objectives:['Classify pine as a gymnosperm and explain what that means','Describe the alternation of generations in pine','Explain the structures and roles of male and female cones','Trace the journey from pollination to seed germination in pine'],
+   pre:['What is a gymnosperm?','Do pine trees have flowers?','How do seeds differ from spores?'],
+   learning:'Pine (Pinus) is a gymnosperm — seeds are naked, not enclosed in fruit. Life cycle shows alternation of generations: Sporophyte (2n) is dominant — the pine tree. Microsporangia in male cones produce microspores → develop into pollen grains (male gametophyte). Megasporangia in female cones produce megaspores → develop into ovule containing egg (female gametophyte). Pollination: wind carries pollen to female cone (anemophily). Fertilization occurs ~1 year after pollination. Zygote develops into embryo within seed. Seed released from cone; germinates under suitable conditions → new sporophyte. Students trace each stage on a printed life cycle chart.',
+   post:['What makes pine a gymnosperm?','What structures produce pollen in pine?','How long does it take for pine seeds to mature after pollination?'],
+   summary:'Pine exhibits alternation of generations, with the sporophyte dominant. Wind-pollinated male cones fertilize female cones, producing naked seeds on cone scales.',
+   hw:'Draw a complete, labeled life cycle diagram of Pinus. Identify the haploid and diploid stages at each step.'},
+
+  {id:'y1t19', year:'First Year', num:'19', topic:'Double Fertilization',
+   bridge:'The teacher asks: "What makes flowering plants unique among all land plants?" A cross-section diagram of a flower is shown. Students identify familiar parts like petal, anther, and ovary.',
+   objectives:['Explain the process of pollination in angiosperms','Describe the development of the pollen tube','Define double fertilization and explain what each fusion produces','Identify the significance of double fertilization in seed development'],
+   pre:['What is fertilization?','Have you seen pollen from a flower?','What is inside a seed?'],
+   learning:'Double fertilization is unique to angiosperms (flowering plants). After pollination, the pollen grain germinates on the stigma → pollen tube grows through the style → two male gametes travel down the tube to the ovule. Inside the ovule: First fertilization: one male gamete (n) + egg cell (n) → zygote (2n) → develops into embryo. Second fertilization: second male gamete (n) + two polar nuclei (n+n = 2n) → triploid endosperm (3n) → nutritive tissue for the embryo. This simultaneous double event is called double fertilization. Students label an ovule diagram showing both fusion events.',
+   post:['What is double fertilization?','What does the fusion of a male gamete with polar nuclei produce?','Why is double fertilization unique to angiosperms?'],
+   summary:'Double fertilization in angiosperms produces a diploid zygote (embryo) and triploid endosperm simultaneously, providing both the next generation and its nutritional support.',
+   hw:'Draw a labeled diagram of an ovule showing the two fertilization events of double fertilization. Indicate the ploidy of all products.'},
+
+  {id:'y1t20', year:'First Year', num:'20', topic:'Phylum Chordata',
+   bridge:'The teacher asks: "What do a fish, a frog, a snake, a pigeon, and a human have in common?" Students are puzzled. The teacher reveals they all belong to Phylum Chordata.',
+   objectives:['List and explain the four defining characteristics of Chordata','Classify major subphyla: Urochordata, Cephalochordata, Vertebrata','Describe the distinguishing features of vertebrates','Provide examples of each major vertebrate class'],
+   pre:['What is a vertebrate?','Do all animals have a backbone?','Have you heard the term "chordate"?'],
+   learning:'Phylum Chordata includes all animals possessing (at some stage of life): (1) Notochord — flexible rod providing support. (2) Dorsal hollow nerve cord — develops into brain/spinal cord. (3) Pharyngeal slits — for filter feeding or gill development. (4) Post-anal tail. Subphyla: Urochordata (tunicates — sea squirts; chordate features only as larvae). Cephalochordata (lancelets, Amphioxus — retain all four features as adults). Vertebrata — notochord replaced by vertebral column; includes Agnatha (lampreys), Chondrichthyes (sharks), Osteichthyes (bony fish), Amphibia (frogs), Reptilia (snakes), Aves (birds), Mammalia (humans). Students sort animal cards into correct classes.',
+   post:['List the four characteristics of Chordata.','What replaces the notochord in vertebrates?','Name the seven classes of vertebrates.'],
+   summary:'Chordates share four hallmark features at some life stage. Vertebrates, the largest subphylum, replace the notochord with a vertebral column and show diverse adaptations.',
+   hw:'Construct a classification hierarchy of Phylum Chordata from subphylum to class. Write one distinguishing feature and one example for each class.'},
+
+  {id:'y1t21', year:'First Year', num:'21', topic:'Characteristics of Arthropoda',
+   bridge:'The teacher asks: "Which animal group has the most species on Earth?" Students guess — it\'s arthropods! Specimens or images of insects, spiders, crabs, and centipedes are displayed.',
+   objectives:['List the defining characteristics of Phylum Arthropoda','Explain the significance of the exoskeleton and moulting','Classify arthropods into major classes with examples','Describe the ecological and economic importance of arthropods'],
+   pre:['What is an invertebrate?','Do insects have bones?','Can you name five arthropods?'],
+   learning:'Arthropoda is the largest animal phylum (~84% of all known animal species). Key characteristics: Chitinous exoskeleton (protection; shed during ecdysis/moulting for growth). Segmented body (head, thorax, abdomen in insects). Jointed appendages (arthro = joint, poda = foot). Open circulatory system (haemolymph in haemocoel). Ventral nervous system with ganglia. Compound eyes. Classes: Insecta (6 legs, 3 body segments — e.g., bee, butterfly). Arachnida (8 legs, 2 segments — e.g., spider, scorpion). Crustacea (10+ legs — e.g., crab, shrimp). Myriapoda (many legs — e.g., centipede, millipede). Ecological roles: pollination, decomposition, food chains. Economic: honey, silk, pest damage. Students match features to classes.',
+   post:['What is the exoskeleton made of in arthropods?','How many legs do insects have compared to arachnids?','What is ecdysis?'],
+   summary:'Arthropods are characterized by a chitinous exoskeleton, jointed appendages, and segmented bodies. They are the most diverse animal phylum with enormous ecological and economic significance.',
+   hw:'Draw and label an insect body plan showing all key arthropod features. Make a table comparing insects, arachnids, crustaceans, and myriapods.'},
+
+  {id:'y1t22', year:'First Year', num:'22', topic:'Male Reproductive System',
+   bridge:'The teacher introduces the topic professionally, explaining the importance of understanding reproductive biology for health education. A simple, labeled diagram is displayed for orientation.',
+   objectives:['Identify and label the organs of the male reproductive system','Explain the functions of each organ','Describe the process of spermatogenesis','Trace the pathway of sperm from production to ejaculation'],
+   pre:['What is reproduction?','Where are sperm produced?','What is a hormone?'],
+   learning:'Male reproductive organs: Testes (in scrotum, ~2°C below body temperature) — site of spermatogenesis and testosterone production. Epididymis — sperm maturation and storage. Vas deferens — muscular tube transporting sperm. Seminal vesicles — secrete fructose-rich fluid (nourishes sperm). Prostate gland — secretes alkaline fluid (protects sperm from vaginal acidity). Cowper\'s glands — pre-ejaculatory lubricating fluid. Urethra — common passage for urine and semen. Penis — copulatory organ. Spermatogenesis: Germinal epithelium → spermatogonia (2n) → primary spermatocyte → meiosis I → secondary spermatocytes → meiosis II → spermatids → spermatozoa. Testosterone (from Leydig cells) regulates the process. Students trace sperm pathway on a diagram.',
+   post:['Where are sperm produced?','Name two accessory glands and their functions.','What hormone is produced by the testes?'],
+   summary:'The male reproductive system produces and delivers sperm. Spermatogenesis in the testes produces spermatozoa, regulated by testosterone and FSH/LH from the pituitary.',
+   hw:'Draw and label a complete diagram of the male reproductive system. Write the pathway of a single sperm from production to ejaculation with a function at each stop.'},
+
+  {id:'y1t23', year:'First Year', num:'23', topic:'Female Reproductive System',
+   bridge:'The teacher introduces the topic with scientific professionalism, emphasizing the importance of reproductive health knowledge. An unlabeled diagram is shown for students to attempt identification.',
+   objectives:['Identify and label the organs of the female reproductive system','Explain the functions of each organ','Describe oogenesis and compare it with spermatogenesis','Explain the menstrual cycle and the hormones regulating it'],
+   pre:['What is an ovum (egg)?','Do females produce eggs continuously like males produce sperm?','Have you heard of the menstrual cycle?'],
+   learning:'Female reproductive organs: Ovaries — produce ova by oogenesis and secrete oestrogen and progesterone. Fallopian tubes (oviducts) — site of fertilization; cilia sweep egg toward uterus. Uterus — site of implantation and fetal development; endometrium lines it. Cervix — lower part of uterus, produces mucus. Vagina — birth canal, receives sperm. Oogenesis: Oogonium (2n) → primary oocyte (before birth) → meiosis resumes at puberty → secondary oocyte (released at ovulation) → if fertilized → ovum. Menstrual cycle (~28 days): Days 1–5: Menstruation. Days 6–13: Follicular phase (FSH stimulates follicle growth; oestrogen rises). Day 14: Ovulation (LH surge). Days 15–28: Luteal phase (corpus luteum secretes progesterone). If no fertilization: corpus luteum degenerates → cycle repeats.',
+   post:['Where does fertilization typically occur?','What hormone triggers ovulation?','How does oogenesis differ from spermatogenesis in terms of products?'],
+   summary:'The female reproductive system produces ova and supports fetal development. The menstrual cycle is regulated by a coordinated interplay of FSH, LH, oestrogen, and progesterone.',
+   hw:'Draw the female reproductive system with labels. Create a table comparing oogenesis and spermatogenesis, then sketch a 28-day menstrual cycle graph.'},
+
+  {id:'y1t24', year:'First Year', num:'24', topic:'Introduction to Genetics',
+   bridge:'The teacher asks: "Why do children resemble their parents but are never identical?" Students discuss family resemblance. A family photo showing trait variation sparks curiosity.',
+   objectives:['Define genetics and key terms: gene, allele, genotype, phenotype','Explain Mendel\'s first law (Law of Segregation)','Describe the principles of dominance and recessiveness','Apply Punnett square to predict offspring ratios'],
+   pre:['What determines the colour of your eyes?','Have you heard of Gregor Mendel?','What does "inherited" mean?'],
+   learning:'Genetics is the study of heredity and variation. Key terms: Gene — segment of DNA coding for a trait. Allele — alternative forms of a gene. Genotype — genetic makeup (e.g., Tt). Phenotype — observable trait (e.g., tall). Homozygous (TT or tt) vs. Heterozygous (Tt). Dominant allele (expressed in Tt) vs. Recessive (expressed only in tt). Mendel\'s Law of Segregation: allele pairs separate during gamete formation; each gamete receives one allele. Monohybrid cross: Tt × Tt → 1 TT : 2 Tt : 1 tt (3:1 phenotype ratio). Students complete Punnett squares for worked examples and then design their own cross.',
+   post:['What is the difference between genotype and phenotype?','If T is dominant over t, what is the phenotype of Tt?','Draw a Punnett square for a cross between two heterozygous tall plants.'],
+   summary:'Genetics explores how traits are inherited. Mendel\'s Law of Segregation explains how alleles separate into gametes, producing predictable offspring ratios.',
+   hw:'Solve three genetics problems using Punnett squares: (1) Monohybrid cross, (2) Back cross, (3) Test cross. Define all relevant terms.'},
+
+  // ── SECOND YEAR ─────────────────────────────
+  {id:'y2t1', year:'Second Year', num:'1', topic:'Importance of Digestion',
+   bridge:'The teacher asks: "Why can\'t we just inject food directly into our blood?" Students think about a sandwich and trace what happens after swallowing. A large macromolecule diagram is shown.',
+   objectives:['Define digestion and distinguish mechanical from chemical digestion','Explain why large food molecules cannot be absorbed directly','Identify the key categories of food that require digestion','Describe the end products of digestion of proteins, carbohydrates, and fats'],
+   pre:['What happens to food after you eat it?','Can the body use a starch molecule directly?','What is absorption?'],
+   learning:'Digestion is the process of breaking large, insoluble food molecules into small, soluble molecules that can be absorbed into the bloodstream. Mechanical digestion: physical breakdown (chewing, churning in stomach) — increases surface area. Chemical digestion: enzymatic hydrolysis — breaks chemical bonds. Carbohydrates (e.g., starch) → maltose → glucose. Proteins → peptides → amino acids. Triglycerides → fatty acids + glycerol. Without digestion, the gut wall cannot absorb large molecules because they cannot cross cell membranes. Students use molecular size analogy (pebbles vs. boulders) to understand absorption. The small intestine lining is highly adapted (villi, microvilli) for maximum absorption.',
+   post:['What is the difference between mechanical and chemical digestion?','What are the end products of protein digestion?','Why must fats be digested before absorption?'],
+   summary:'Digestion converts large insoluble macromolecules into small soluble molecules (glucose, amino acids, fatty acids) that can be absorbed across the gut wall into circulation.',
+   hw:'Create a flowchart showing what happens to a meal of rice, chicken, and oil from mouth to absorption. Include enzymes and products at each step.'},
+
+  {id:'y2t2', year:'Second Year', num:'2', topic:'Human Alimentary Canal',
+   bridge:'The teacher challenges students: "Can you trace the path of a single bite of food from mouth to toilet?" Students attempt orally. A large poster of the digestive tract is unveiled.',
+   objectives:['Identify and locate all organs of the human alimentary canal','Describe the structure and function of each organ','Explain the role of accessory organs (liver, pancreas, gall bladder)','Describe the process of absorption in the small intestine'],
+   pre:['What happens to food in the stomach?','Where does digestion end?','What does the liver do?'],
+   learning:'The alimentary canal is a continuous muscular tube ~9 metres long. Mouth: mechanical (chewing) + salivary amylase (starch → maltose). Oesophagus: peristalsis moves food. Stomach: HCl (pH 2) + pepsin (protein digestion); churning. Small intestine (duodenum, jejunum, ileum): pancreatic juice (amylase, lipase, proteases), bile (from liver/gall bladder — emulsifies fat). Villi and microvilli (brush border) absorb nutrients into blood (glucose, amino acids) and lacteals (fatty acids). Large intestine (caecum, colon, rectum): absorbs water, forms faeces. Anus: defecation. Accessory organs: Liver (bile production, detoxification), Pancreas (digestive enzymes + insulin/glucagon), Gall bladder (bile storage). Students label a blank diagram.',
+   post:['What is the function of bile?','Where does absorption of nutrients primarily occur?','Name two enzymes secreted by the pancreas.'],
+   summary:'The alimentary canal processes food through sequential organs, each specialised in digestion and absorption, aided by accessory organs (liver, pancreas, gall bladder).',
+   hw:'Draw and label a complete diagram of the human alimentary canal and accessory organs. Write the function of each organ in a two-column table.'},
+
+  {id:'y2t3', year:'Second Year', num:'3', topic:'Disorders of the Digestive System',
+   bridge:'The teacher asks: "How many of you have ever had a stomach ache or heartburn?" Nearly all hands go up. Students share experiences, creating relevance for the topic.',
+   objectives:['Identify common disorders of the digestive system','Describe the causes, symptoms, and effects of each disorder','Explain the role of diet and lifestyle in preventing digestive disorders','Distinguish between infectious and non-infectious digestive conditions'],
+   pre:['What is diarrhoea?','Have you heard of an ulcer?','Is constipation a disease?'],
+   learning:'Common digestive disorders: Gastroesophageal Reflux Disease (GERD): acidic stomach contents reflux into oesophagus → heartburn; caused by weak cardiac sphincter; treated with antacids/PPIs. Gastric ulcer: erosion of stomach lining by H. pylori or excess HCl; symptoms: gnawing pain, bleeding; treated with antibiotics + antacids. Diarrhoea: excessive fluid in faeces due to infection (Vibrio cholerae, Rotavirus) or irritable bowel; leads to dehydration. Constipation: hard, infrequent stools; caused by low fibre/water intake. Appendicitis: inflammation of appendix; risk of rupture; treated surgically. Jaundice: liver dysfunction → bilirubin buildup → yellowing of skin/eyes. Colon cancer: linked to low-fibre diet. Students create a disorder info-card for assigned condition.',
+   post:['What causes GERD?','How does cholera cause diarrhoea?','What is the treatment for a gastric ulcer?'],
+   summary:'Digestive disorders range from lifestyle-related (GERD, constipation) to infectious (cholera, H. pylori ulcers) to structural (appendicitis, colon cancer). Diet and hygiene are key preventive factors.',
+   hw:'Choose three digestive disorders and for each: write the cause, two symptoms, one complication if untreated, and one preventive measure.'},
+
+  {id:'y2t4', year:'Second Year', num:'4', topic:'Function of Blood Circulatory System',
+   bridge:'The teacher places a stethoscope to a student\'s chest, letting them hear their own heartbeat. "What is that beating doing, and why does your body depend on it?"',
+   objectives:['List the main functions of the circulatory system','Describe the components of blood and their roles','Explain the concept of double circulation in humans','Distinguish between systemic and pulmonary circulation'],
+   pre:['What is blood made of?','Why does the heart beat?','What is circulation?'],
+   learning:'The human circulatory system is a closed, double-circulation system. Functions: Transport (O₂, CO₂, nutrients, hormones, waste). Regulation (temperature, pH, blood pressure). Protection (white blood cells, antibodies, clotting). Blood components: Erythrocytes (RBCs): carry O₂ via haemoglobin; biconcave, no nucleus. Leucocytes (WBCs): immune defence. Thrombocytes (platelets): clotting. Plasma: 55% of blood; carries dissolved substances. Double circulation: Pulmonary circuit — deoxygenated blood from right heart → lungs → oxygenated blood to left heart. Systemic circuit — oxygenated blood from left heart → body → deoxygenated blood to right heart. Advantages: higher pressure for systemic circulation; complete separation of oxygenated/deoxygenated blood.',
+   post:['What are the four components of blood?','What is the function of haemoglobin?','What is the difference between pulmonary and systemic circulation?'],
+   summary:'The circulatory system transports materials, regulates homeostasis, and provides immunity. Human double circulation ensures efficient oxygenation for high metabolic demands.',
+   hw:'Draw a diagram of the double circulation system, labelling the heart chambers, main vessels, and the path of oxygenated and deoxygenated blood.'},
+
+  {id:'y2t5', year:'Second Year', num:'5', topic:'Human Heart',
+   bridge:'The teacher shows a real or model heart (or a detailed diagram) and asks: "This organ beats 100,000 times a day without resting — how?" Students examine the size comparison to their fist.',
+   objectives:['Describe the external and internal anatomy of the human heart','Explain the cardiac cycle (systole and diastole)','Describe the electrical conduction system of the heart','Interpret a normal ECG and explain what each wave represents'],
+   pre:['How many chambers does the heart have?','What is a heart valve?','What keeps blood flowing in one direction?'],
+   learning:'The heart is a muscular pump located in the mediastinum, slightly left of center. External: coronary arteries supply heart muscle. Internal chambers: Right atrium receives deoxygenated blood from venae cavae → tricuspid valve → Right ventricle → pulmonary valve → pulmonary arteries → lungs. Left atrium receives oxygenated blood from pulmonary veins → bicuspid (mitral) valve → Left ventricle → aortic valve → aorta → body. Cardiac cycle: Diastole (relaxation — chambers fill). Atrial systole (atria contract). Ventricular systole (ventricles contract — blood ejected). Heart sounds "lub-dub" — valves closing. Conduction: SA node (pacemaker) → AV node → Bundle of His → Purkinje fibres. ECG: P wave (atrial depolarization), QRS complex (ventricular depolarization), T wave (ventricular repolarization).',
+   post:['Name the four valves of the heart.','What is the role of the SA node?','What does the QRS complex represent on an ECG?'],
+   summary:'The human heart has four chambers and four valves, cycling through diastole and systole, driven by the SA node. The ECG records electrical events of the cardiac cycle.',
+   hw:'Draw and label a cross-section of the human heart showing all chambers, valves, and major vessels. Annotate the path of blood through one complete cycle.'},
+
+  {id:'y2t6', year:'Second Year', num:'6', topic:'Disorders of the Circulatory System',
+   bridge:'The teacher shows two statistics: "1 in 3 deaths globally is due to cardiovascular disease." Students react. A short scenario of a patient with chest pain is read aloud.',
+   objectives:['Identify major circulatory disorders: hypertension, atherosclerosis, MI, stroke','Describe the causes and risk factors for each disorder','Explain how each disorder disrupts normal circulatory function','Suggest evidence-based preventive strategies for circulatory disease'],
+   pre:['What is blood pressure?','Have you heard of a heart attack?','Is cholesterol always harmful?'],
+   learning:'Hypertension (high blood pressure >140/90 mmHg): silent killer; caused by stress, obesity, high salt diet, smoking; damages arteries and heart over time. Atherosclerosis: buildup of fatty plaques (atheroma) in arterial walls → lumen narrows → reduced blood flow; risk: high LDL, smoking, diabetes. Myocardial Infarction (MI/heart attack): coronary artery blocked (thrombus on plaque) → cardiac muscle death → symptoms: crushing chest pain, left arm pain, sweating; treatment: thrombolytics, angioplasty, bypass surgery. Stroke: cerebral artery blocked (ischaemic — 80%) or ruptured (haemorrhagic) → brain tissue death → FAST: Face drooping, Arm weakness, Speech difficulty, Time to call emergency. Deep Vein Thrombosis (DVT): blood clot in leg vein; can cause pulmonary embolism. Prevention: exercise, diet, no smoking, medication compliance.',
+   post:['What is hypertension and what causes it?','How does atherosclerosis lead to a heart attack?','What does FAST stand for in stroke recognition?'],
+   summary:'Major circulatory disorders include hypertension, atherosclerosis, MI, and stroke — all linked by modifiable risk factors like diet, smoking, and inactivity. Early recognition saves lives.',
+   hw:'Create a fact file for three circulatory disorders: cause, symptoms, treatment, and two prevention tips. Draw a cross-section of an atherosclerotic artery.'},
+
+  {id:'y2t7', year:'Second Year', num:'7', topic:'Role of Lungs',
+   bridge:'The teacher leads students in a deep breathing exercise, asking them to count breaths per minute. "What is happening in your lungs right now, and why does every cell in your body depend on it?"',
+   objectives:['Describe the gross anatomy of the lungs and their adaptations','Explain the mechanism of inhalation and exhalation','Describe gas exchange at the alveoli using Fick\'s Law','Explain how oxygen is carried in the blood and CO₂ is removed'],
+   pre:['How many times do you breathe per minute at rest?','What gases are exchanged in the lungs?','What is a diaphragm?'],
+   learning:'The lungs are paired, spongy organs in the thoracic cavity, enclosed by pleural membranes. Anatomy: trachea → bronchi → bronchioles → alveoli. ~300 million alveoli provide ~70 m² surface area. Alveolar adaptations: one-cell thick wall (short diffusion path), moist surface (dissolves gases), rich capillary network, large surface area. Ventilation mechanism: Inhalation — diaphragm contracts (flattens), external intercostals contract → thorax expands → pressure drops → air flows in. Exhalation — muscles relax → thorax recoils → pressure rises → air flows out. Gas exchange (Fick\'s Law): O₂ diffuses from alveolus (high pO₂) to blood; CO₂ diffuses from blood (high pCO₂) to alveolus. O₂ transport: 98% bound to haemoglobin (oxyhaemoglobin). CO₂ transport: 70% as bicarbonate (HCO₃⁻), 20% bound to haemoglobin, 10% dissolved. Students measure lung capacity with a simple spirometer model.',
+   post:['What features of alveoli make them efficient for gas exchange?','What happens to the diaphragm during inhalation?','How is most CO₂ transported in the blood?'],
+   summary:'Lungs facilitate gas exchange across millions of alveoli. Ventilation (breathing) delivers O₂ and removes CO₂; haemoglobin and bicarbonate ensure efficient gas transport in blood.',
+   hw:'Draw a labelled diagram of the alveolus and surrounding capillary showing gas exchange. List three structural adaptations of alveoli and explain how each aids diffusion.'},
+
+  {id:'y2t8', year:'Second Year', num:'8', topic:'Disorders of the Respiratory Tract',
+   bridge:'The teacher plays a brief audio of a person wheezing and another with a productive cough. Students guess the possible conditions. Statistics on respiratory disease prevalence in Pakistan are shared.',
+   objectives:['Identify major respiratory disorders: asthma, bronchitis, pneumonia, tuberculosis, emphysema','Describe the cause, pathology, and symptoms of each disorder','Explain the impact of smoking on the respiratory system','Suggest preventive and therapeutic measures for each disorder'],
+   pre:['Have you or anyone you know had asthma?','What is a cough — what purpose does it serve?','How does smoking affect the lungs?'],
+   learning:'Asthma: chronic inflammation of bronchioles → bronchoconstriction → wheezing, breathlessness; triggers: allergens, cold air, exercise; treatment: bronchodilators (β₂ agonists), corticosteroids. Bronchitis: inflammation of bronchi; Acute (viral/bacterial infection, self-limiting). Chronic (mainly due to smoking — mucus hypersecretion, "smoker\'s cough"). Pneumonia: lung alveoli fill with fluid/pus due to bacterial (Streptococcus pneumoniae), viral, or fungal infection → reduced gas exchange → fever, cough, pleuritic pain; treated with antibiotics. Tuberculosis (TB): Mycobacterium tuberculosis → granulomas in lungs (tubercles) → cough with blood, night sweats, weight loss; treated with 6-month DOTS therapy. Emphysema: alveolar wall destruction (mainly from smoking) → reduced surface area → breathlessness; irreversible. Students create a poster for one respiratory disease for a health campaign.',
+   post:['What causes the wheezing sound in asthma?','What bacterium causes tuberculosis?','Why is emphysema irreversible?'],
+   summary:'Respiratory disorders range from reversible (asthma, acute bronchitis) to progressive and irreversible (emphysema). Smoking is the primary preventable risk factor for most chronic respiratory diseases.',
+   hw:'Compare asthma, pneumonia, and tuberculosis in a table: cause, symptoms, how it affects gas exchange, treatment, and prevention.'},
+
+  {id:'y2t10', year:'Second Year', num:'10', topic:'Introduction to Nervous System',
+   bridge:'The teacher snaps their fingers near a student\'s face (at safe distance). "Why did you blink? How did that happen so fast — your body responded before you even thought!" This introduces reflex arcs.',
+   objectives:['State the functions of the nervous system','Describe the structure of a neuron and identify its parts','Distinguish between the CNS and PNS','Explain how a nerve impulse is transmitted (action potential)'],
+   pre:['What is the nervous system?','What is a neuron?','Is your spinal cord part of the brain?'],
+   learning:'The nervous system coordinates rapid responses to stimuli. Functions: sensory input → integration → motor output. Neuron structure: cell body (soma with nucleus), dendrites (receive signals), axon (transmit signals), myelin sheath (speeds conduction), Schwann cells (myelination in PNS), nodes of Ranvier, axon terminals (synaptic knobs). Types: Sensory (afferent), Motor (efferent), Interneurons. CNS = Brain + Spinal cord. PNS = Cranial (12 pairs) + Spinal nerves (31 pairs); includes Somatic (voluntary) and Autonomic (sympathetic/parasympathetic). Action potential: resting potential (–70 mV, Na⁺ outside) → depolarization (Na⁺ in, reaches +40 mV) → repolarization (K⁺ out) → hyperpolarization → refractory period → propagation along axon. Myelinated axons conduct via saltatory conduction (faster). Students label a neuron diagram.',
+   post:['Name three parts of a neuron and their functions.','What is the difference between the CNS and PNS?','What ion flows in during depolarization?'],
+   summary:'The nervous system uses neurons to transmit electrochemical signals. The action potential propagates impulses; the CNS integrates information while the PNS carries signals to and from the body.',
+   hw:'Draw and label a myelinated motor neuron. Sketch a graph of the action potential and label all phases (resting, depolarization, repolarization, hyperpolarization).'},
+
+  {id:'y2t11', year:'Second Year', num:'11', topic:'Human Brain',
+   bridge:'The teacher shows a model or diagram of the human brain and asks: "Which part allows you to read this board? Which part is controlling your heartbeat right now? Which part stores your memories?"',
+   objectives:['Identify the major regions of the human brain','Describe the functions of the cerebrum, cerebellum, and brainstem','Explain the role of the limbic system and hypothalamus','Describe the protective structures of the brain'],
+   pre:['What is the brain made of?','Which part of the brain controls balance?','Is the brain protected by bone?'],
+   learning:'The human brain weighs ~1.4 kg and has ~86 billion neurons. Protection: Skull (cranium), Meninges (dura, arachnoid, pia mater), Cerebrospinal fluid (CSF — shock absorber), Blood-brain barrier. Major regions: Cerebrum (largest, two hemispheres, corpus callosum connects them) — lobes: Frontal (personality, planning, voluntary movement — motor cortex). Parietal (somatosensory cortex, spatial awareness). Temporal (hearing, memory, language — Wernicke\'s area). Occipital (visual cortex). Cerebellum: coordination, balance, fine motor skills. Brainstem: Midbrain (visual/auditory reflexes). Pons (breathing rate, facial nerves). Medulla oblongata (heart rate, blood pressure, vomiting). Hypothalamus: homeostasis (temperature, hunger, thirst, circadian rhythm). Limbic system: emotion and memory (amygdala, hippocampus). Students map functions to brain regions on a diagram.',
+   post:['What is the function of the cerebellum?','Which lobe processes visual information?','What does the medulla oblongata control?'],
+   summary:'The brain is organized into specialized regions: the cerebrum for higher functions, cerebellum for coordination, brainstem for vital functions, and limbic system for emotion and memory.',
+   hw:'Draw a lateral view of the human brain. Label all four lobes of the cerebrum, cerebellum, brainstem parts, and hypothalamus. Write the function of each labelled structure.'},
+
+  {id:'y2t12', year:'Second Year', num:'12', topic:'Disorders of the Nervous System',
+   bridge:'The teacher reads a brief news story about a young person experiencing epilepsy or Parkinson\'s and asks students: "What is happening in the brain during these conditions?"',
+   objectives:['Identify common nervous system disorders and their neurological basis','Describe the causes and symptoms of epilepsy, Parkinson\'s, Alzheimer\'s, and depression','Explain how neurotransmitter imbalances lead to neurological disease','Describe current treatment approaches for nervous system disorders'],
+   pre:['Have you heard of epilepsy?','What is Parkinson\'s disease?','Are mental health conditions neurological?'],
+   learning:'Epilepsy: abnormal, excessive, synchronized neuronal firing → seizures; caused by brain injury, genetics, infection; types: focal, generalized (tonic-clonic); treated with anticonvulsants (valproate, carbamazepine). Parkinson\'s Disease: degeneration of dopaminergic neurons in substantia nigra → low dopamine → tremor at rest, rigidity, bradykinesia (slow movement), postural instability; treated with levodopa, deep brain stimulation. Alzheimer\'s Disease: progressive dementia; amyloid plaques and neurofibrillary tangles → neuron death; cholinergic neuron loss; memory loss, confusion; treated with acetylcholinesterase inhibitors (donepezil). Depression: low serotonin/noradrenaline; treated with SSRIs. Multiple Sclerosis (MS): autoimmune destruction of myelin → impaired nerve conduction → varied neurological symptoms. Students create a neurological disease profile for an assigned condition.',
+   post:['What neurotransmitter is deficient in Parkinson\'s disease?','What are the pathological hallmarks of Alzheimer\'s disease?','How do SSRIs work in treating depression?'],
+   summary:'Nervous system disorders arise from neuron degeneration, neurotransmitter imbalances, or autoimmune damage. Understanding their mechanisms guides targeted treatments.',
+   hw:'Prepare a one-page fact sheet on Parkinson\'s Disease covering: neural mechanism, 4 symptoms, 2 treatment options, and the role of dopamine in the basal ganglia.'},
+
+  {id:'y2t13', year:'Second Year', num:'13', topic:'Difference Between Exocrine and Endocrine Glands',
+   bridge:'The teacher asks: "What\'s the difference between crying (which needs a duct) and feeling scared (which doesn\'t)?" This introduces the idea that different glands communicate differently.',
+   objectives:['Define exocrine and endocrine glands and state their distinguishing features','Give examples of exocrine glands and their secretions','Give examples of endocrine glands and their hormones','Explain how hormones travel and act on target organs'],
+   pre:['What is a gland?','Does saliva need a duct to reach your mouth?','Have you heard of the thyroid gland?'],
+   learning:`Exocrine glands: have ducts; secrete products onto body surfaces or into body cavities. Examples: salivary glands (amylase), sweat glands, sebaceous glands (sebum), pancreatic exocrine cells (digestive enzymes), mammary glands, lacrimal glands (tears). Endocrine glands: ductless; secrete hormones directly into the bloodstream. Examples: Pituitary ("master gland"), Thyroid (thyroxine), Adrenal (adrenaline, cortisol), Pancreatic islets of Langerhans (insulin, glucagon), Testes/Ovaries (sex hormones). Hormone action: travels in blood → binds to specific receptor on target cell → produces response. Comparison: Exocrine — ducts, local effect, fast. Endocrine — ductless, systemic effect, slower but sustained. Some glands (pancreas, gonads) are both (mixed glands). Students complete a comparison table.`,
+   post:['What is the key structural difference between exocrine and endocrine glands?','Name two exocrine glands and their products.','How does a hormone reach its target organ?'],
+   summary:'Exocrine glands use ducts for local delivery; endocrine glands secrete hormones into blood for systemic, slower, but sustained effects on target organs.',
+   hw:'Create a two-column comparison table for exocrine vs. endocrine glands covering: structure, mode of secretion, speed, examples, and products. Include a labelled diagram of each type.'},
+
+  {id:'y2t14', year:'Second Year', num:'14', topic:'Pituitary Gland',
+   bridge:'The teacher asks: "Which gland controls all other glands in your body?" After guesses, reveals the pituitary — "smaller than a pea, yet it runs the entire hormonal system." A diagram showing its location under the brain is displayed.',
+   objectives:['Describe the location and structure of the pituitary gland','List hormones secreted by the anterior and posterior pituitary','Explain how the hypothalamus regulates pituitary function','Describe the effects of pituitary hypo- and hypersecretion'],
+   pre:['Where is the pituitary gland located?','What does the term "master gland" mean?','Have you heard of growth hormone?'],
+   learning:'The pituitary gland (hypophysis) is located in the sella turcica of the sphenoid bone, below the hypothalamus, connected by the pituitary stalk (infundibulum). Anterior pituitary (adenohypophysis) — controlled by hypothalamic releasing/inhibiting hormones: GH (growth hormone — promotes tissue growth), TSH (stimulates thyroid), ACTH (stimulates adrenal cortex), FSH and LH (gonadotropins — regulate gonads), PRL (prolactin — milk production). Posterior pituitary (neurohypophysis) — stores and releases hormones made in hypothalamus: ADH (antidiuretic hormone/vasopressin — water reabsorption in kidneys), Oxytocin (uterine contractions, milk ejection). Disorders: Gigantism/Acromegaly (GH hypersecretion), Dwarfism (GH hyposecretion), Diabetes insipidus (ADH deficiency). Negative feedback loops regulate most hormones. Students draw the hypothalamus-pituitary axis.',
+   post:['Name two hormones of the anterior pituitary and their functions.','What is the role of ADH?','What happens when too much growth hormone is secreted in adulthood?'],
+   summary:'The pituitary gland, controlled by the hypothalamus via releasing hormones, is the master gland that regulates growth, reproduction, metabolism, and water balance through its anterior and posterior lobes.',
+   hw:'Draw the hypothalamus-pituitary axis showing the control of at least three hormones via negative feedback. List one disorder for GH excess and one for ADH deficiency.'},
+
+  {id:'y2t15', year:'Second Year', num:'15', topic:'Adrenal Gland',
+   bridge:'The teacher asks: "Have you ever been so scared that your heart raced, your palms sweat, and you felt a surge of energy — even before you consciously decided to react?" That was your adrenal glands in action.',
+   objectives:['Describe the location and zones of the adrenal gland','Distinguish between adrenal cortex and medulla secretions','Explain the physiological effects of adrenaline and cortisol','Describe disorders associated with adrenal dysfunction'],
+   pre:['Where are the adrenal glands located?','What is adrenaline?','Have you heard of "fight or flight"?'],
+   learning:'The adrenal glands are paired, triangular glands sitting atop each kidney. Adrenal cortex (outer, derived from mesoderm): Zona glomerulosa → Mineralocorticoids (aldosterone) — regulates Na⁺/K⁺ and blood pressure. Zona fasciculata → Glucocorticoids (cortisol) — regulates metabolism, anti-inflammatory, stress response. Zona reticularis → Sex hormones (androgens). Adrenal medulla (inner, derived from neural crest): Catecholamines — Adrenaline (epinephrine) and Noradrenaline (norepinephrine). Fight-or-flight response: increased heart rate, dilated airways, glycogen → glucose, blood flow to muscles, pupil dilation, decreased digestion. Disorders: Addison\'s disease (adrenal insufficiency — low cortisol, hyperpigmentation, fatigue). Cushing\'s syndrome (cortisol excess — moon face, central obesity, hyperglycaemia). Phaeochromocytoma (adrenaline-secreting tumour — hypertensive crises). Students trace adrenal responses in a stress scenario.',
+   post:['What is the difference between the adrenal cortex and medulla?','What is the function of aldosterone?','What symptoms characterise Cushing\'s syndrome?'],
+   summary:'The adrenal cortex produces cortisol and aldosterone for long-term stress and electrolyte balance; the medulla produces adrenaline for the immediate fight-or-flight response.',
+   hw:'Draw and label the adrenal gland showing all cortical zones and medulla. Create a table comparing Addison\'s disease and Cushing\'s syndrome: cause, hormonal change, and three symptoms each.'},
+
+  {id:'y2t16', year:'Second Year', num:'16', topic:'Positive Feedback Mechanism',
+   bridge:'The teacher asks: "Most body systems work to keep things stable — but what if the body sometimes needs to amplify a response rather than dampen it?" Students discuss childbirth and blood clotting as clues.',
+   objectives:['Define positive feedback and distinguish it from negative feedback','Explain why positive feedback is less common in homeostasis','Describe the role of oxytocin in childbirth as a positive feedback example','Give two other examples of positive feedback in the body'],
+   pre:['What is negative feedback?','Does the body always try to maintain balance?','Have you heard of oxytocin?'],
+   learning:'Homeostasis is mainly maintained by negative feedback (a change triggers a response that reverses that change). Positive feedback: a change triggers a response that amplifies the original change — it drives a process to completion then stops. Key examples: Parturition (childbirth): baby\'s head pushes on cervix → nerve signals to hypothalamus → oxytocin released → stronger uterine contractions → more cervical pressure → more oxytocin → cycle continues until delivery, then stops. Blood clotting (coagulation cascade): injury → platelet activation → clotting factors released → more platelets activated → thrombin produced → more fibrin → clot formed → process stops when vessel is sealed. Lactation (let-down reflex): suckling → oxytocin → milk ejection → more suckling. Positive feedback is self-amplifying but self-limiting (ends when the process is complete). Students flowchart both examples.',
+   post:['How does positive feedback differ from negative feedback?','What hormone mediates the positive feedback in childbirth?','Give one other example of positive feedback in the human body.'],
+   summary:'Positive feedback amplifies a stimulus to drive a process to rapid completion, unlike negative feedback which restores equilibrium. Examples include childbirth and blood clotting.',
+   hw:'Draw a flowchart of the oxytocin positive feedback loop during childbirth. Then draw the blood clotting cascade as a second positive feedback example.'},
+
+  {id:'y2t17', year:'Second Year', num:'17', topic:'Introduction to Human Skeletal System',
+   bridge:'The teacher asks students to feel their elbow and knee joints and asks: "How are these different? What would happen if your skeleton were made of soft tissue?"',
+   objectives:['State the functions of the human skeletal system','Distinguish between the axial and appendicular skeleton','Describe the structure of a long bone','Explain the composition of bone tissue (compact and spongy)'],
+   pre:['How many bones are in the adult human body?','What is bone made of?','What is the difference between a joint and a bone?'],
+   learning:'The adult human skeleton has 206 bones. Functions: Support (framework for soft tissue). Protection (skull, rib cage, vertebral column). Movement (levers for muscle action). Mineral storage (calcium, phosphorus). Blood cell production (red bone marrow — haematopoiesis). Divisions: Axial skeleton (80 bones): skull, vertebral column (33 vertebrae), rib cage (12 pairs ribs + sternum). Appendicular skeleton (126 bones): pectoral girdles, upper limbs, pelvic girdle, lower limbs. Long bone anatomy: epiphysis (ends — spongy bone, articular cartilage), diaphysis (shaft — compact bone, medullary cavity with yellow marrow), periosteum (outer membrane), endosteum (inner lining), epiphyseal plate (growth plate in young). Bone tissue: Compact bone — osteons (Haversian systems — central canal + concentric lamellae). Spongy bone — trabeculae network, lightweight, strong. Students label a cross-section of a long bone.',
+   post:['Name two functions of the skeletal system.','What is the difference between the axial and appendicular skeleton?','What is the medullary cavity of a long bone filled with?'],
+   summary:'The 206-bone human skeleton supports, protects, and enables movement, while also producing blood cells and storing minerals. It is organized into axial (central) and appendicular (limb) divisions.',
+   hw:'Draw and label a cross-section of a long bone identifying all key anatomical features. List the 5 functions of the skeletal system with one example for each.'},
+
+  {id:'y2t18', year:'Second Year', num:'18', topic:'Types of Bones',
+   bridge:'The teacher brings in or shows images of different real bones — a vertebra, a flat skull bone, a femur, and a wrist bone. "Can you see how different these look? Why would the body need so many shapes?"',
+   objectives:['Classify bones by shape into five types with examples','Explain how the shape of each bone type relates to its function','Describe the difference between compact and spongy bone distribution in each type','Identify bone markings (processes, foramina, fossae) and their significance'],
+   pre:['Can you name five bones in your body?','Are all bones the same shape?','What is a kneecap bone called?'],
+   learning:'Bones are classified by shape: Long bones: longer than wide; compact bone shaft, spongy bone ends; act as levers for movement. Example: femur, humerus, tibia, radius. Short bones: roughly cube-shaped; mostly spongy bone; absorb shock and allow gliding movements. Example: carpals (wrist), tarsals (ankle). Flat bones: thin, flat, often curved; outer compact + inner spongy (diploë); protect organs, large surface for muscle attachment. Example: skull bones, sternum, scapula, ribs. Irregular bones: complex shapes not fitting other categories. Example: vertebrae, facial bones, hip bone. Sesamoid bones: small, embedded in tendons near joints; protect tendons, alter angle of pull. Example: patella (kneecap). Bone markings: Processes (condyle, tuberosity, spine) — muscle/ligament attachment. Depressions/openings (fossa, foramen, groove) — passage for nerves/vessels. Students match bone examples to types on cards.',
+   post:['Give one example of a flat bone and explain its function.','What type of bone is the patella?','What is the functional advantage of short bones in the wrist?'],
+   summary:'Bones are categorized by shape — long, short, flat, irregular, and sesamoid — with each shape precisely adapted to its mechanical and protective function.',
+   hw:'Construct a table of all five bone types: shape, main tissue composition, example, and primary function. Draw and label one bone from each category.'},
+
+  {id:'y2t19', year:'Second Year', num:'19', topic:'Introduction to Homeostasis',
+   bridge:'The teacher asks students: "What happens to your body temperature on a cold day? Why doesn\'t it drop to 10°C? What stops it?" This leads to the core concept of homeostasis.',
+   objectives:['Define homeostasis and explain its importance','Describe the components of a homeostatic control system','Distinguish between negative and positive feedback','Give examples of homeostatic regulation in the body'],
+   pre:['What is the normal human body temperature?','What happens to blood glucose after a meal?','Have you heard the term "equilibrium"?'],
+   learning:'Homeostasis is the maintenance of a relatively stable internal environment despite changes in the external environment. Walter Cannon coined the term (1926). Why important: enzymes, proteins, and cell membranes function optimally within narrow ranges of temperature, pH, and osmolarity. Control system components: Receptor/sensor — detects change in a variable (stimulus). Control centre (integrating centre) — usually the brain/hypothalamus — compares to set point. Effector — muscle or gland that produces the corrective response. Negative feedback: most common; response opposes the original change — stabilises the variable. Example: rising blood glucose → pancreas secretes insulin → cells absorb glucose → blood glucose falls → insulin secretion decreases. Temperature regulation: hypothalamus is thermostat; cold → vasoconstriction, shivering, piloerection; hot → vasodilation, sweating. Positive feedback: amplifies change to completion (childbirth, clotting). Students diagram a temperature regulation loop.',
+   post:['Define homeostasis.','Name the three components of a homeostatic control system.','Why is negative feedback more common than positive feedback in homeostasis?'],
+   summary:'Homeostasis uses receptor-control centre-effector loops and predominantly negative feedback to maintain stable internal conditions critical for enzyme activity and cell survival.',
+   hw:'Draw a labelled diagram of the negative feedback loop for blood glucose regulation (insulin and glucagon). Write a second diagram for temperature regulation showing responses to heat and cold.'},
+
+  {id:'y2t20', year:'Second Year', num:'20', topic:'Osmoconformers and Osmoregulators',
+   bridge:'The teacher places a piece of seaweed in fresh water and a freshwater plant in salt water. "What will happen to each? Why?" Students observe and predict as an introduction to osmotic challenges.',
+   objectives:['Define osmoregulation and explain why it is necessary','Distinguish between osmoconformers and osmoregulators with examples','Describe the mechanisms of osmoregulation in marine, freshwater, and terrestrial vertebrates','Explain the role of the kidney in human osmoregulation'],
+   pre:['What is osmosis?','Do fish drink water?','What happens to a cell in a hypertonic solution?'],
+   learning:'Osmoregulation: control of water and ion balance to maintain osmolarity of body fluids. Challenges differ by environment: Marine environment: high external osmolarity. Freshwater: low external osmolarity. Terrestrial: desiccation risk. Osmoconformers: allow body fluid osmolarity to match environment; mostly marine invertebrates (mussels, starfish); no energy spent on regulation but vulnerable to salinity changes. Osmoregulators: actively maintain constant body fluid osmolarity regardless of environment; spend energy. Freshwater fish: hyperosmotic to water → gain water by osmosis, lose ions; response: large volumes of dilute urine, active ion uptake via gills. Marine fish: hypoosmotic to seawater → lose water → drink seawater, excrete ions via gills. Terrestrial vertebrates: conserve water — concentrated urine (kidneys), waterproof skin, behavioural adaptations. Human kidney: nephron — filtration (glomerulus), selective reabsorption (tubules), secretion → concentrated/dilute urine adjusted by ADH (aquaporins in collecting duct) and aldosterone (Na⁺ reabsorption).',
+   post:['What is the difference between an osmoconformer and an osmoregulator?','How does a freshwater fish osmoregulate?','What hormone increases water reabsorption in the kidney collecting duct?'],
+   summary:'Osmoconformers match environment osmolarity passively; osmoregulators actively maintain stable internal osmolarity using kidneys, gills, and hormonal regulation (ADH, aldosterone).',
+   hw:'Compare osmoregulation strategies of a freshwater fish, a marine bony fish, and a desert mammal in a table. Include mechanism, main challenge, and key adaptations for each.'},
+
+  {id:'y2t21', year:'Second Year', num:'21', topic:'Importance of Drugs',
+   bridge:'The teacher displays common substances: paracetamol, antibiotics, insulin, aspirin, and coffee, asking: "Which of these is a drug?" Students\' answers reveal common misconceptions.',
+   objectives:['Define a drug in a scientific context','Classify drugs by their effects on the nervous system','Describe the therapeutic importance of commonly used drugs','Distinguish between drug use, misuse, and abuse; explain the concept of addiction'],
+   pre:['What is a drug?','Are all drugs harmful?','Have you heard of drug addiction?'],
+   learning:'A drug is any chemical substance that alters the structure or function of a biological system. Therapeutic drugs: Analgesics (pain relief — paracetamol, morphine). Antibiotics (bacterial infections — penicillin, amoxicillin). Antivirals (HIV, influenza — oseltamivir). Vaccines (immunisation). Hormones (insulin for diabetes). Drugs classified by CNS effect: Stimulants (increase CNS activity — caffeine, amphetamines, cocaine). Depressants (decrease CNS activity — alcohol, benzodiazepines). Analgesics (pain suppression — aspirin, opioids). Hallucinogens (alter perception — LSD, cannabis). Drug misuse: using a drug in a way other than prescribed. Addiction: compulsive drug use despite harm; involves tolerance (needing more for same effect) and withdrawal symptoms. Mechanism: drugs alter dopamine pathways in the brain\'s reward system (nucleus accumbens). Social and health impacts of drug abuse. Students debate the ethical use of performance-enhancing drugs.',
+   post:['Give one example of a stimulant and one depressant drug.','What is the difference between drug tolerance and drug addiction?','How do opioids reduce pain?'],
+   summary:'Drugs have vital therapeutic roles but misuse leads to addiction through dopamine pathway dysregulation. Understanding drug mechanisms helps distinguish beneficial use from harmful abuse.',
+   hw:'Create a classification chart of drugs by CNS effect with two examples per category. Write a paragraph on how addiction develops neurologically.'},
+
+  {id:'y2t22', year:'Second Year', num:'22', topic:'Blood Group System',
+   bridge:'The teacher shows a news story about a patient who died from a blood transfusion error, asking: "Why must blood groups be matched in transfusions?" Students recognize the life-or-death importance of the topic.',
+   objectives:['Explain the ABO blood group system and its genetic basis','Describe the role of antigens and antibodies in blood grouping','Determine compatibility in blood transfusions using ABO and Rh systems','Explain the Rh factor and haemolytic disease of the newborn (HDN)'],
+   pre:['Do you know your blood group?','What is an antigen?','Can anyone receive any blood type?'],
+   learning:'ABO system: Blood group is determined by glycoprotein antigens on the surface of RBCs. Group A: A antigen, anti-B antibodies. Group B: B antigen, anti-A antibodies. Group AB: both antigens, no antibodies — universal recipient. Group O: no antigens, both anti-A and anti-B antibodies — universal donor. Transfusion reaction: if recipient has antibodies against donor antigens → agglutination and haemolysis → life-threatening. Genetic basis: IA, IB (codominant), i (recessive) alleles. Rh system: Rh+ have D antigen; Rh– do not. Rh– receiving Rh+ blood develops anti-Rh antibodies → dangerous in subsequent transfusions. Haemolytic Disease of the Newborn (HDN): Rh– mother carries Rh+ fetus → at delivery, fetal Rh+ RBCs enter maternal blood → mother makes anti-Rh antibodies → in next Rh+ pregnancy, antibodies cross placenta → destroy fetal RBCs. Prevented by anti-D immunoglobulin injection. Students complete blood group compatibility charts.',
+   post:['Which blood group is the universal donor?','What antigens and antibodies does blood group B have?','What is the Rh factor and why is it clinically important?'],
+   summary:'Blood groups are determined by surface antigens; mismatched transfusions cause deadly agglutination. The Rh factor is critical in transfusions and pregnancy to prevent haemolytic disease.',
+   hw:'Complete a blood group compatibility chart for all ABO combinations. Write a short explanation of haemolytic disease of the newborn and how it is prevented.'},
+
+  {id:'y2t23', year:'Second Year', num:'23', topic:'Causes of Climate Change',
+   bridge:'The teacher shows a before-and-after image of Siachen Glacier in Gilgit-Baltistan and asks: "This glacier is shrinking — what could be causing this?" This makes climate change locally relevant for students.',
+   objectives:['Distinguish between natural and anthropogenic causes of climate change','Explain the greenhouse effect and how it leads to global warming','Identify major greenhouse gases and their sources','Describe feedback mechanisms that amplify climate change'],
+   pre:['What is climate change?','Is climate change the same as weather change?','Have you noticed any changes in local weather patterns?'],
+   learning:'Climate change refers to long-term shifts in global temperatures and weather patterns. Natural causes: volcanic eruptions (aerosols), solar variability, Milankovitch cycles (orbital changes). However, since the Industrial Revolution, human activities are the dominant cause. Anthropogenic causes: Burning fossil fuels (CO₂, NO₂ from power stations, vehicles, industry). Deforestation (reduces CO₂ absorption, releases stored carbon). Agriculture (methane from livestock and rice paddies, N₂O from fertilizers). Industrial processes (cement production, refrigerants — CFCs, HFCs). Urbanization (heat islands). The greenhouse effect: Shortwave solar radiation → absorbed by Earth → re-emitted as long-wave infrared → greenhouse gases (CO₂, CH₄, H₂O, N₂O, O₃) trap infrared → atmosphere warms. Enhanced greenhouse effect: increased GHG concentrations → more heat trapped → global warming. Positive feedbacks: Arctic ice melts (less albedo → more absorption), permafrost thaws (releases CH₄). Students graph CO₂ concentration vs. temperature over 400,000 years from ice core data.',
+   post:['What is the difference between the natural greenhouse effect and the enhanced greenhouse effect?','Name three major greenhouse gases and their sources.','Why does deforestation contribute to climate change?'],
+   summary:'Climate change is primarily driven by anthropogenic greenhouse gas emissions that enhance the natural greenhouse effect, trapping heat and causing global warming amplified by feedback loops.',
+   hw:'Create a mind map of causes of climate change — divide into natural and human causes. Draw a diagram of the enhanced greenhouse effect and label all key components.'},
+
+  {id:'y2t24', year:'Second Year', num:'24', topic:'Role of the Greenhouse Effect',
+   bridge:'The teacher demonstrates the greenhouse effect by placing a thermometer inside and outside a glass jar in sunlight and asking students to predict and observe the temperature difference.',
+   objectives:['Explain the natural greenhouse effect and its essential role for life','Describe the major greenhouse gases and their atmospheric roles','Distinguish between the natural and enhanced greenhouse effect','Explain the consequences of the enhanced greenhouse effect on ecosystems'],
+   pre:['Why is Earth warmer than the Moon despite being further from the Sun?','What would Earth\'s temperature be without an atmosphere?','Have you heard of global warming?'],
+   learning:'Without the greenhouse effect, Earth\'s average surface temperature would be approximately –18°C (instead of the current +15°C). The natural greenhouse effect is essential for life. Process: Solar radiation (shortwave) penetrates the atmosphere → Earth absorbs it → re-emits as infrared (longwave) radiation → greenhouse gases absorb and re-radiate it in all directions → warms the lower atmosphere. Key GHGs and contributions: Water vapour (H₂O) — most abundant, 50% of effect. CO₂ — 20%; rising from 280 ppm (pre-industrial) to 420 ppm (2024). Methane (CH₄) — 25× more potent than CO₂ over 100 years. Nitrous oxide (N₂O) — 300× more potent. CFCs — very high GWP but being phased out (Montreal Protocol). Enhanced greenhouse effect consequences: Rising sea levels (thermal expansion + ice melt). Extreme weather events. Shifts in biomes and species ranges. Ocean acidification (CO₂ + H₂O → carbonic acid). Disruption of monsoon patterns. Coral bleaching. Students calculate the carbon footprint of a typical Pakistani household.',
+   post:['What would Earth\'s temperature be without greenhouse gases?','Which greenhouse gas has the highest global warming potential per molecule?','How does ocean acidification occur?'],
+   summary:'The natural greenhouse effect maintains Earth\'s life-supporting temperature. The enhanced greenhouse effect from rising anthropogenic GHG emissions is causing global warming with cascading ecological consequences.',
+   hw:'Draw a labeled diagram of the greenhouse effect showing solar radiation, infrared re-emission, and the role of GHGs. List five consequences of enhanced greenhouse effect with one example each.'},
+
+  {id:'y2t25', year:'Second Year', num:'25', topic:'Introduction to Biostatistics',
+   bridge:'The teacher asks: "If a drug is tested on 100 patients and 60 recover — does that prove the drug works?" Students debate. This introduces the need for statistical analysis in biology.',
+   objectives:['Define biostatistics and explain its role in biological research','Distinguish between population and sample, and qualitative vs. quantitative data','Calculate and interpret mean, median, mode, and standard deviation','Explain the importance of hypothesis testing and p-values in biology'],
+   pre:['What is a statistic?','Have you calculated a class average?','Is a survey result always reliable?'],
+   learning:'Biostatistics is the application of statistical methods to biological and health sciences data. Why important: converts raw data into meaningful conclusions; distinguishes real effects from random variation. Key concepts: Population vs. Sample: population = entire group; sample = subset studied (must be random and representative). Data types: Qualitative (categorical — blood group, gender). Quantitative — Discrete (whole numbers — number of eggs) or Continuous (measurements — height, weight). Measures of central tendency: Mean = Σx/n. Median = middle value when sorted. Mode = most frequent value. Measures of dispersion: Range = max – min. Standard deviation (SD) = measure of spread around the mean; small SD = data clustered; large SD = data spread. Normal distribution: bell curve; mean ± 1 SD contains 68% of data; mean ± 2 SD contains 95%. Hypothesis testing: Null hypothesis (H₀) vs. Alternative hypothesis (H₁). p-value: probability result occurred by chance; p <0.05 → statistically significant → reject H₀. Students calculate mean and SD for a sample dataset of plant heights.',
+   post:['What is the difference between mean and median?','If the p-value of a drug trial is 0.02, what does this tell you?','Give one example of discrete quantitative data in biology.'],
+   summary:'Biostatistics allows biologists to analyze data rigorously, distinguish significant results from chance, and make evidence-based conclusions using measures of central tendency, dispersion, and hypothesis testing.',
+   hw:'Given a dataset of 10 students\' pulse rates: calculate the mean, median, mode, and standard deviation. Sketch a normal distribution curve and mark ±1 SD and ±2 SD.'}
+];
+
+// ── BUILD UI ──────────────────────────────────
+const y1 = plans.filter(p => p.year === 'First Year');
+const y2 = plans.filter(p => p.year === 'Second Year');
+
+const sectionColors = [
+  {bg:'rgba(88,166,255,0.08)', border:'rgba(88,166,255,0.15)', icon:'🌉'},
+  {bg:'rgba(63,185,80,0.08)', border:'rgba(63,185,80,0.15)', icon:'🎯'},
+  {bg:'rgba(210,168,255,0.08)', border:'rgba(210,168,255,0.15)', icon:'🔍'},
+  {bg:'rgba(88,166,255,0.08)', border:'rgba(88,166,255,0.12)', icon:'📖'},
+  {bg:'rgba(247,129,102,0.08)', border:'rgba(247,129,102,0.15)', icon:'📝'},
+  {bg:'rgba(63,185,80,0.08)', border:'rgba(63,185,80,0.12)', icon:'✅'},
+  {bg:'rgba(255,166,87,0.08)', border:'rgba(255,166,87,0.15)', icon:'📚'}
+];
+
+function buildNav() {
+  const nav1 = document.getElementById('nav-y1');
+  const nav2 = document.getElementById('nav-y2');
+  y1.forEach(p => nav1.insertAdjacentHTML('beforeend', `<div class="nav-item" data-id="${p.id}" data-topic="${p.topic.toLowerCase()}" onclick="showView('${p.id}',this)"><span class="nav-num">${p.num}.</span>${p.topic}</div>`));
+  y2.forEach(p => nav2.insertAdjacentHTML('beforeend', `<div class="nav-item" data-id="${p.id}" data-topic="${p.topic.toLowerCase()}" onclick="showView('${p.id}',this)"><span class="nav-num">${p.num}.</span>${p.topic}</div>`));
+}
+
+function buildHomeGrid() {
+  const g1 = document.getElementById('home-grid-y1');
+  const g2 = document.getElementById('home-grid-y2');
+  y1.forEach(p => g1.insertAdjacentHTML('beforeend', `<div class="topic-card" onclick="showView('${p.id}', null)"><span class="tc-num">${p.num}.</span><span class="tc-name">${p.topic}</span><span class="tc-arr">→</span></div>`));
+  y2.forEach(p => g2.insertAdjacentHTML('beforeend', `<div class="topic-card" onclick="showView('${p.id}', null)"><span class="tc-num">${p.num}.</span><span class="tc-name">${p.topic}</span><span class="tc-arr">→</span></div>`));
+}
+
+function buildLessons() {
+  const container = document.getElementById('lesson-container');
+  plans.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'lesson-plan';
+    el.id = 'view-' + p.id;
+    el.innerHTML = `
+      <div class="action-bar">
+        <button class="btn btn-outline" onclick="showView('home',null)">← All Topics</button>
+        <button class="btn btn-primary" onclick="window.print()">🖨 Print Lesson Plan</button>
+      </div>
+      <div class="lp-header">
+        <div class="lp-meta-grid">
+          <div class="lp-meta-item"><div class="lbl">Institution</div><div class="val">Inter College Kharmang</div></div>
+          <div class="lp-meta-item"><div class="lbl">Teacher</div><div class="val">Sir Hasnian</div></div>
+          <div class="lp-meta-item"><div class="lbl">Subject</div><div class="val">Biology</div></div>
+          <div class="lp-meta-item"><div class="lbl">Year</div><div class="val">${p.year}</div></div>
+          <div class="lp-meta-item"><div class="lbl">Duration</div><div class="val">40 Minutes</div></div>
+          <div class="lp-meta-item"><div class="lbl">Topic No.</div><div class="val">${p.num}</div></div>
+        </div>
+        <div class="lp-title">Topic: <span>${p.topic}</span></div>
+        <div class="lp-model-badge">⬡ BOPPPS Teaching Model</div>
+      </div>
+      <div class="section-grid">
+        ${sec('Bridge-In','5 min',0,p.bridge,'p')}
+        ${secObj('Learning Objectives','3 min',1,p.objectives)}
+        ${secQ('Pre-Assessment','5 min',2,p.pre)}
+        ${sec('Participatory Learning','20 min',3,p.learning,'p')}
+        ${secQ('Post-Assessment','5 min',4,p.post)}
+        ${sec('Summary / Closure','2 min',5,p.summary,'p')}
+        ${hw(p.hw)}
+      </div>`;
+    container.appendChild(el);
+  });
+}
+
+function sec(title, dur, ci, content, type) {
+  const c = sectionColors[ci];
+  return `<div class="section-card" style="border-color:${c.border}">
+    <div class="section-header" style="background:${c.bg}">
+      <div class="section-icon" style="background:${c.bg}">${c.icon}</div>
+      <span class="s-title">${title}</span>
+      <span class="s-duration">${dur}</span>
+    </div>
+    <div class="section-body"><p>${content}</p></div>
+  </div>`;
+}
+
+function secObj(title, dur, ci, items) {
+  const c = sectionColors[ci];
+  const cards = items.map(i => `<div class="obj-card"><span class="check">✓</span>${i}</div>`).join('');
+  return `<div class="section-card" style="border-color:${c.border}">
+    <div class="section-header" style="background:${c.bg}">
+      <div class="section-icon" style="background:${c.bg}">${c.icon}</div>
+      <span class="s-title">${title}</span>
+      <span class="s-duration">${dur}</span>
+    </div>
+    <div class="section-body"><p>By the end of this lesson, students will be able to:</p><div class="obj-grid">${cards}</div></div>
+  </div>`;
+}
+
+function secQ(title, dur, ci, items) {
+  const c = sectionColors[ci];
+  const qs = items.map(i => `<li class="q">${i}</li>`).join('');
+  return `<div class="section-card" style="border-color:${c.border}">
+    <div class="section-header" style="background:${c.bg}">
+      <div class="section-icon" style="background:${c.bg}">${c.icon}</div>
+      <span class="s-title">${title}</span>
+      <span class="s-duration">${dur}</span>
+    </div>
+    <div class="section-body"><ul>${qs}</ul>${ci===4?'<p style="margin-top:10px;font-size:13px;color:var(--text3)">Students answer verbally or write short responses.</p>':''}</div>
+  </div>`;
+}
+
+function hw(text) {
+  const c = sectionColors[6];
+  return `<div class="section-card" style="border-color:${c.border}">
+    <div class="section-header" style="background:${c.bg}">
+      <div class="section-icon" style="background:${c.bg}">🏠</div>
+      <span class="s-title">Homework</span>
+      <span class="s-duration">At home</span>
+    </div>
+    <div class="section-body"><div class="hw-box"><strong>Assignment:</strong> ${text}</div></div>
+  </div>`;
+}
+
+// ── NAV LOGIC ──────────────────────────────────
+let currentView = 'home';
+
+function showView(id, navEl) {
+  // Hide all
+  document.querySelectorAll('.lesson-plan, .home-view').forEach(el => {
+    el.classList.remove('visible');
+    if (el.classList.contains('lesson-plan')) el.style.display = 'none';
+  });
+  // Show target
+  const target = document.getElementById('view-' + id);
+  if (target) {
+    target.classList.add('visible');
+    if (target.classList.contains('lesson-plan')) target.style.display = 'block';
+  }
+  // Update nav
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navEl) {
+    navEl.classList.add('active');
+  } else {
+    const ni = document.querySelector(`.nav-item[data-id="${id}"]`);
+    if (ni) ni.classList.add('active');
+  }
+  currentView = id;
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 768) closeSidebar();
+}
+
+function filterTopics(q) {
+  q = q.toLowerCase();
+  document.querySelectorAll('.nav-item[data-topic]').forEach(n => {
+    n.style.display = (!q || n.dataset.topic.includes(q)) ? '' : 'none';
+  });
+}
+
+// ── SIDEBAR TOGGLE ─────────────────────────────
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('overlay');
+  sb.classList.toggle('open');
+  ov.classList.toggle('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('open');
+}
+
+// ── INIT ───────────────────────────────────────
+buildNav();
+buildHomeGrid();
+buildLessons();
+showView('home', document.querySelector('.nav-item[data-id="home"]'));
+</script>
+</body>
+</html>
